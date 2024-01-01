@@ -3,16 +3,19 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
+#include <stdbool.h>
 
-#define F 0
-#define T 1
+// #define FALSE 0
+// #define TRUE 1
 #define C 15
 #define R 20
 
 typedef struct
 {
 	char	**array;
-	int		width, row, col;
+	int		width;
+	int		row;
+	int		col;
 }			Struct;
 
 // main

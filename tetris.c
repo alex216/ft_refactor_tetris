@@ -2,21 +2,21 @@
 
 char			Table[R][C] = {0};
 int				final = 0;
-char			GameOn = T;
+char			GameOn = true;
 suseconds_t		timer = 400000;
 int				decrease = 1000;
-struct timeval before_now, now;
+struct timeval	before_now, now;
 Struct			current;
 
-const Struct	StructsArray[7] = {{(char *[]){(char[]){0, 1, 1}, (char[]){1, 1,
-		0}, (char[]){0, 0, 0}}, 3}, {(char *[]){(char[]){1, 1, 0}, (char[]){0,
-		1, 1}, (char[]){0, 0, 0}}, 3}, {(char *[]){(char[]){0, 1, 0},
-		(char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3}, {(char *[]){(char[]){0, 0,
-		1}, (char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3}, {(char *[]){(char[]){1,
-		0, 0}, (char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3},
-		{(char *[]){(char[]){1, 1}, (char[]){1, 1}}, 2}, {(char *[]){(char[]){0,
-		0, 0, 0}, (char[]){1, 1, 1, 1}, (char[]){0, 0, 0, 0}, (char[]){0, 0, 0,
-		0}}, 4}};
+const Struct	StructsArray[7] = {
+	{(char *[]){(char[]){0, 1, 1}, (char[]){1, 1, 0}, (char[]){0, 0, 0}}, 3},
+	{(char *[]){(char[]){1, 1, 0}, (char[]){0, 1, 1}, (char[]){0, 0, 0}}, 3},
+	{(char *[]){(char[]){0, 1, 0}, (char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3},
+	{(char *[]){(char[]){0, 0, 1}, (char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3},
+	{(char *[]){(char[]){1, 0, 0}, (char[]){1, 1, 1}, (char[]){0, 0, 0}}, 3},
+	{(char *[]){(char[]){1, 1}, (char[]){1, 1}}, 2},
+	{(char *[]){(char[]){0, 0, 0, 0}, (char[]){1, 1, 1, 1}, (char[]){0, 0, 0, 0}, (char[]){0, 0, 0, 0}}, 4}
+};
 
 Struct	FunctionCS(Struct shape)
 {
@@ -52,9 +52,10 @@ void	FunctionDS(Struct shape)
 int	FunctionCP(Struct shape)
 {
 	char	**array;
+	int		i;
+	int		j;
 
 	array = shape.array;
-	int i, j;
 	for (i = 0; i < shape.width; i++)
 	{
 		for (j = 0; j < shape.width; j++)
@@ -62,13 +63,13 @@ int	FunctionCP(Struct shape)
 			if ((shape.col + j < 0 || shape.col + j >= C || shape.row + i >= R))
 			{
 				if (array[i][j])
-					return (F);
+					return (false);
 			}
 			else if (Table[shape.row + i][shape.col + j] && array[i][j])
-				return (F);
+				return (false);
 		}
 	}
-	return (T);
+	return (true);
 }
 
 void	FunctionRS(Struct shape)
@@ -141,7 +142,7 @@ int	main(void)
 	current = new_shape;
 	if (!FunctionCP(current))
 	{
-		GameOn = F;
+		GameOn = false;
 	}
 	FunctionPT();
 	while (GameOn)
@@ -195,7 +196,7 @@ int	main(void)
 					current = new_shape;
 					if (!FunctionCP(current))
 					{
-						GameOn = F;
+						GameOn = false;
 					}
 				}
 				break ;
@@ -267,7 +268,7 @@ int	main(void)
 					current = new_shape;
 					if (!FunctionCP(current))
 					{
-						GameOn = F;
+						GameOn = false;
 					}
 				}
 				break ;
