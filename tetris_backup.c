@@ -1,4 +1,8 @@
-#include "tetris.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
+#include <ncurses.h>
 
 #define F 0
 #define T 1
@@ -11,7 +15,10 @@ char GameOn = T;
 suseconds_t timer = 400000;
 int decrease = 1000;
 
-struct timeval before_now, now;
+typedef struct {
+    char **array;
+    int width, row, col;
+} Struct;
 Struct current;
 
 const Struct StructsArray[7]= {
@@ -97,8 +104,14 @@ void FunctionPT(){
 	printw("\nScore: %d\n", final);
 }
 
+struct timeval before_now, now;
 int hasToUpdate(){
 	return ((suseconds_t)(now.tv_sec*1000000 + now.tv_usec) -((suseconds_t)before_now.tv_sec*1000000 + before_now.tv_usec)) > timer;
+}
+
+void set_timeout(int time) {
+	time = 1;
+	timeout(1);
 }
 
 int main() {
