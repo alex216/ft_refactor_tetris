@@ -5,10 +5,8 @@
 #include <time.h>
 #include <stdbool.h>
 
-// #define FALSE 0
-// #define TRUE 1
-#define C 15
-#define R 20
+#define COL_MAX 15
+#define ROW_MAX 20
 
 typedef struct
 {
@@ -24,7 +22,7 @@ Struct		FunctionCS(Struct shape);
 void		FunctionDS(Struct shape);
 int			FunctionCP(Struct shape);
 void		FunctionRS(Struct shape);
-void		FunctionPT(void);
+void		print_screen(void);
 int			hasToUpdate(void);
 
 // utils

@@ -1,6 +1,6 @@
 #include "tetris.h"
 
-char			Table[R][C] = {0};
+char			Table[ROW_MAX][COL_MAX] = {0};
 int				final = 0;
 char			GameOn = true;
 suseconds_t		timer = 400000;
@@ -60,7 +60,7 @@ int	FunctionCP(Struct shape)
 	{
 		for (j = 0; j < shape.width; j++)
 		{
-			if ((shape.col + j < 0 || shape.col + j >= C || shape.row + i >= R))
+			if ((shape.col + j < 0 || shape.col + j >= COL_MAX || shape.row + i >= ROW_MAX))
 			{
 				if (array[i][j])
 					return (false);
@@ -89,11 +89,11 @@ void	FunctionRS(Struct shape)
 	FunctionDS(temp);
 }
 
-void	FunctionPT(void)
+void	print_screen(void)
 {
-	char	Buffer[R][C] = {0};
-
+	char	Buffer[ROW_MAX][COL_MAX] = {0};
 	int i, j;
+
 	for (i = 0; i < current.width; i++)
 	{
 		for (j = 0; j < current.width; j++)
@@ -103,12 +103,12 @@ void	FunctionPT(void)
 		}
 	}
 	clear();
-	for (i = 0; i < C - 9; i++)
+	for (i = 0; i < COL_MAX - 9; i++)
 		printw(" ");
 	printw("42 Tetris\n");
-	for (i = 0; i < R; i++)
+	for (i = 0; i < ROW_MAX; i++)
 	{
-		for (j = 0; j < C; j++)
+		for (j = 0; j < COL_MAX; j++)
 		{
 			printw("%c ", (Table[i][j] + Buffer[i][j]) ? '#' : '.');
 		}
@@ -136,7 +136,7 @@ int	main(void)
 	gettimeofday(&before_now, NULL);
 	set_timeout(1);
 	new_shape = FunctionCS(StructsArray[rand() % 7]);
-	new_shape.col = rand() % (C - new_shape.width + 1);
+	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 	new_shape.row = 0;
 	FunctionDS(current);
 	current = new_shape;
@@ -144,7 +144,7 @@ int	main(void)
 	{
 		GameOn = false;
 	}
-	FunctionPT();
+	print_screen();
 	while (GameOn)
 	{
 		if ((c = getch()) != ERR)
@@ -164,33 +164,32 @@ int	main(void)
 						for (j = 0; j < current.width; j++)
 						{
 							if (current.array[i][j])
-								Table[current.row + i][current.col
-									+ j] = current.array[i][j];
+								Table[current.row + i][current.col + j] = current.array[i][j];
 						}
 					}
 					int n, m, sum, count = 0;
-					for (n = 0; n < R; n++)
+					for (n = 0; n < ROW_MAX; n++)
 					{
 						sum = 0;
-						for (m = 0; m < C; m++)
+						for (m = 0; m < COL_MAX; m++)
 						{
 							sum += Table[n][m];
 						}
-						if (sum == C)
+						if (sum == COL_MAX)
 						{
 							count++;
 							int l, k;
 							for (k = n; k >= 1; k--)
-								for (l = 0; l < C; l++)
+								for (l = 0; l < COL_MAX; l++)
 									Table[k][l] = Table[k - 1][l];
-							for (l = 0; l < C; l++)
+							for (l = 0; l < COL_MAX; l++)
 								Table[k][l] = 0;
 							timer -= decrease--;
 						}
 					}
 					final += 100 * count;
 					new_shape = FunctionCS(StructsArray[rand() % 7]);
-					new_shape.col = rand() % (C - new_shape.width + 1);
+					new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 					new_shape.row = 0;
 					FunctionDS(current);
 					current = new_shape;
@@ -217,7 +216,7 @@ int	main(void)
 				break ;
 			}
 			FunctionDS(temp);
-			FunctionPT();
+			print_screen();
 		}
 		gettimeofday(&now, NULL);
 		if (hasToUpdate())
@@ -237,32 +236,31 @@ int	main(void)
 						for (j = 0; j < current.width; j++)
 						{
 							if (current.array[i][j])
-								Table[current.row + i][current.col
-									+ j] = current.array[i][j];
+								Table[current.row + i][current.col + j] = current.array[i][j];
 						}
 					}
 					int n, m, sum, count = 0;
-					for (n = 0; n < R; n++)
+					for (n = 0; n < ROW_MAX; n++)
 					{
 						sum = 0;
-						for (m = 0; m < C; m++)
+						for (m = 0; m < COL_MAX; m++)
 						{
 							sum += Table[n][m];
 						}
-						if (sum == C)
+						if (sum == COL_MAX)
 						{
 							count++;
 							int l, k;
 							for (k = n; k >= 1; k--)
-								for (l = 0; l < C; l++)
+								for (l = 0; l < COL_MAX; l++)
 									Table[k][l] = Table[k - 1][l];
-							for (l = 0; l < C; l++)
+							for (l = 0; l < COL_MAX; l++)
 								Table[k][l] = 0;
 							timer -= decrease--;
 						}
 					}
 					new_shape = FunctionCS(StructsArray[rand() % 7]);
-					new_shape.col = rand() % (C - new_shape.width + 1);
+					new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 					new_shape.row = 0;
 					FunctionDS(current);
 					current = new_shape;
@@ -289,16 +287,16 @@ int	main(void)
 				break ;
 			}
 			FunctionDS(temp);
-			FunctionPT();
+			print_screen();
 			gettimeofday(&before_now, NULL);
 		}
 	}
 	FunctionDS(current);
 	endwin();
 	int i, j;
-	for (i = 0; i < R; i++)
+	for (i = 0; i < ROW_MAX; i++)
 	{
-		for (j = 0; j < C; j++)
+		for (j = 0; j < COL_MAX; j++)
 		{
 			printf("%c ", Table[i][j] ? '#' : '.');
 		}
