@@ -1,25 +1,9 @@
 #include "tetris.h"
 
-/**
- * @brief   Rotates the given shape 90 degrees clockwise.
- *
- * This function takes a Struct representing a shape and rotates it 90 degrees
- * clockwise. The original shape remains unchanged, and the rotated shape is
- * returned.
- *
- * @param   shape   The input shape to be rotated.
- */
-void	rotate_shape(Struct shape)
-{
-	Struct	temp;
-	int y, k, x;
-
-	temp = copy_shape(shape);
-	for (y = 0; y < shape.width; y++)
-		for (k = 0, x = shape.width - 1; k < shape.width; k++, x--)
-			shape.array[y][k] = temp.array[x][y];
-	destruct_shape(temp);
-}
+int		check_shape(Struct shape, t_game_info *info);
+Struct	copy_shape(Struct shape);
+void	rotate_shape(Struct shape);
+void	destruct_shape(Struct shape);
 
 /**
  * @brief   Checks if placing the given shape at its current position is valid.
@@ -69,6 +53,41 @@ Struct	copy_shape(Struct shape)
 			new_shape.array[i][j] = shape.array[i][j];
 	}
 	return (new_shape);
+}
+
+/**
+ * @brief   Rotates the given shape 90 degrees clockwise.
+ *
+ * This function takes a Struct representing a shape and rotates it 90 degrees
+ * clockwise. The original shape remains unchanged, and the rotated shape is
+ * returned.
+ *
+ * @param   shape   The input shape to be rotated.
+ */
+void	rotate_shape(Struct shape)
+{
+	Struct	temp;
+	int y, rx, x, ry;
+
+	temp = copy_shape(shape);
+	for (y = 0; y < shape.width; y++)
+	{
+		for (x = 0; x < shape.width; x++)
+		{
+			if (ROTATE_CLOCKWISE == true)
+			{
+				ry = y;
+				rx = (shape.width - 1) - x;
+			}
+			else
+			{
+				ry = (shape.width - 1) - y;
+				rx = x;
+			}
+			shape.array[ry][rx] = temp.array[x][y];
+		}
+	}
+	destruct_shape(temp);
 }
 
 /**

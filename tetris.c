@@ -1,8 +1,41 @@
 #include "tetris.h"
 
+// TODO: rotate q and e key
+
+// global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};
 struct timeval	before_now, now;
 Struct			current;
+const Struct	StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
+	{(char *[]){(char[]){0, 1, 1},
+				(char[]){1, 1, 0},
+				(char[]){0, 0, 0}}, 3
+	},
+	{(char *[]){(char[]){1, 1, 0},
+				(char[]){0, 1, 1},
+				(char[]){0, 0, 0}}, 3
+	},
+	{(char *[]){(char[]){0, 1, 0},
+				(char[]){1, 1, 1},
+				(char[]){0, 0, 0}}, 3
+	},
+	{(char *[]){(char[]){0, 0, 1},
+				(char[]){1, 1, 1},
+				(char[]){0, 0, 0}}, 3
+	},
+	{(char *[]){(char[]){1, 0, 0},
+				(char[]){1, 1, 1},
+				(char[]){0, 0, 0}}, 3
+	},
+	{(char *[]){(char[]){1, 1},
+				(char[]){1, 1}}, 2
+	},
+	{(char *[]){(char[]){0, 0, 0, 0},
+				(char[]){1, 1, 1, 1},
+				(char[]){0, 0, 0, 0},
+				(char[]){0, 0, 0, 0}}, 4
+	}
+};
 
 int	main(void)
 {
@@ -19,7 +52,7 @@ int	main(void)
 	initscr();
 	gettimeofday(&before_now, NULL);
 	timeout(1);
-	new_shape = copy_shape(StructsArray[rand() % 7]);
+	new_shape = copy_shape(StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
 	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 	new_shape.row = 0;
 	destruct_shape(current);
