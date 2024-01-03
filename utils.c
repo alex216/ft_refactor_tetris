@@ -34,18 +34,10 @@ const Struct	StructsArray[7] = {
 // initialize t_game_info struct variable
 void	initiate_game(t_game_info *info)
 {
-	char	aTable[ROW_MAX][COL_MAX] = {0};
-
 	info->final_score = 0;
 	info->timer = 400000;
 	info->GameOn = true;
 	info->decrease = 1000;
-	// for (int i = 0; i < ROW_MAX; i++) {
-	// 	for (int j = 0; j < COL_MAX; j++) {
-	// 		info->Table[i][j] = 0;
-	// 	}
-	// }
-	// info->Table = aTable;
 }
 
 /**
@@ -131,4 +123,16 @@ int	validate_shape_move(Struct shape, t_game_info *info)
 			if (IS_CELL_OCCUPIED && (IS_OUTSIDE_BOUNDS || IS_TABLE_OCCUPIED))
 				return (false);
 	return (true);
+}
+
+void	display_result(t_game_info *info)
+{
+	int x, y;
+	for (x = 0; x < ROW_MAX; x++)
+	{
+		for (y = 0; y < COL_MAX; y++)
+			printf("%c ", Table[x][y] ? BLOCK_CHAR : BLANK_CHAR);
+		printf("\n");
+	}
+	printf("\nGame over!\n\nScore: %d\n", info->final_score);
 }

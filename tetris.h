@@ -26,9 +26,6 @@ typedef struct game_info
 	suseconds_t		timer;
 	char			GameOn;
 	int				decrease;
-// char			Table[ROW_MAX][COL_MAX] = {0};
-	// char			Table[ROW_MAX][COL_MAX];
-	// void		*Table;
 }	t_game_info;
 
 typedef struct
