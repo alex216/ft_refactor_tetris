@@ -1,17 +1,23 @@
 #include "tetris.h"
 
+t_shape	create_shape(void);
 int		check_shape(t_shape shape, t_game_info *info);
 t_shape	copy_shape(t_shape shape);
 void	rotate_shape(t_shape shape);
 void	destruct_shape(t_shape shape);
 
-/**
- * @brief   Checks if placing the given shape at its current position is valid.
- *
- * @param   shape	The input shape to be checked.
- * 			info
- * @return  int		True if placing the shape is valid, and false otherwise.
- */
+// create new shape
+t_shape	create_shape(void)
+{
+	t_shape new_shape;
+
+	new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
+	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
+	new_shape.row = 0;
+	return (new_shape);
+}
+
+// checks if placing the given shape at its current position is valid
 int	check_shape(t_shape shape, t_game_info *info)
 {
 	char	**array;
@@ -26,12 +32,7 @@ int	check_shape(t_shape shape, t_game_info *info)
 	return (true);
 }
 
-/**
- * @brief	Creates a copy of the given shape.
- *
- * @param	t_shape	The input shape to be copied.
- * @return	t_shape	A new shape that is a copy of the input shape.
- */
+// creates a copy of the given shape
 t_shape	copy_shape(t_shape shape)
 {
 	t_shape	new_shape;
@@ -48,11 +49,7 @@ t_shape	copy_shape(t_shape shape)
 	return (new_shape);
 }
 
-/**
- * @brief   Rotates the given shape 90 degrees clockwise.
- *
- * @param   shape   The input shape to be rotated.
- */
+// rotates the given shape 90 degrees clockwise
 void	rotate_shape(t_shape shape)
 {
 	t_shape	temp;
@@ -79,11 +76,7 @@ void	rotate_shape(t_shape shape)
 	destruct_shape(temp);
 }
 
-/**
- * @brief	Free struct shape.
- *
- * @param	shapt	The input shape to be freed.
- */
+// free struct shape
 void	destruct_shape(t_shape shape)
 {
 	int	i;

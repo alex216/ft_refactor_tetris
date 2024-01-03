@@ -6,7 +6,7 @@ static void _move_left(t_shape *temp, t_game_info *info, t_shape *new_shape, int
 static void _rotate(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
 static void	_move_down(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
 static void _check_if_any_line(t_game_info *info, t_shape *new_shape, int *count);
-void handle_key_press(char c, t_game_info *info, t_shape *new_shape, int *count, t_shape *temp);
+void 		handle_key_press(char c, t_game_info *info, t_shape *new_shape, int *count, t_shape *temp);
 
 // move shape to right
 static void	_move_right(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count)
