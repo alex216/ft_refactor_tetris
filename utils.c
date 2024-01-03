@@ -49,9 +49,29 @@ void	initiate_game(t_game_info *info)
 	// info->Table = aTable;
 }
 
+/**
+ * @brief   Rotates the given shape 90 degrees clockwise.
+ *
+ * This function takes a Struct representing a shape and rotates it 90 degrees
+ * clockwise. The original shape remains unchanged, and the rotated shape is
+ * returned.
+ *
+ * @param   shape   The input shape to be rotated.
+ */
+void	rotate_shape(Struct shape)
 {
 	time = 1;
 	timeout(1);
+	Struct	temp;
+	int y, k, x;
+
+	temp = copy_shape(shape);
+	for (y = 0; y < shape.width; y++)
+		for (k = 0, x = shape.width - 1; k < shape.width; k++, x--)
+			shape.array[y][k] = temp.array[x][y];
+	destruct_shape(temp);
+}
+
 /**
  * @brief   Creates a copy of the given shape.
  *

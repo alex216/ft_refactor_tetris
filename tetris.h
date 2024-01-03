@@ -38,10 +38,10 @@ extern char			Table[ROW_MAX][COL_MAX];
 int			main(void);
 void		FunctionDS(Struct shape);
 int			FunctionCP(Struct shape);
-void		FunctionRS(Struct shape);
 void		print_screen(void);
 int			hasToUpdate(void);
 
 // utils
 void		set_timeout(int time);
+void		rotate_shape(Struct shape);
 Struct		copy_shape(Struct shape);
