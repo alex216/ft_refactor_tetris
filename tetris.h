@@ -7,6 +7,9 @@
 
 #define COL_MAX 15
 #define ROW_MAX 20
+#define BLOCK_CHAR '#'
+#define BLANK_CHAR '.'
+
 
 typedef struct
 {
@@ -15,6 +18,10 @@ typedef struct
 	int		row;
 	int		col;
 }			Struct;
+
+// global variable
+extern const Struct	StructsArray[7];
+extern char			Table[ROW_MAX][COL_MAX];
 
 // main
 int			main(void);
