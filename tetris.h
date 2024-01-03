@@ -45,13 +45,15 @@ extern Struct			current;
 // main
 int			main(void);
 void		initiate_game(t_game_info *p);
-int			validate_shape_move(Struct shape, t_game_info *p);
 void		print_screen(t_game_info *p);
 int			hasToUpdate(t_game_info *p);
 
 // utils
-void		rotate_shape(Struct shape);
-Struct		copy_shape(Struct shape);
 void		display_result(t_game_info *p);
 void		destruct_shape(Struct shape);
-void	press_s_key(Struct *temp, t_game_info *info, Struct *new_shape, int *count);
+void		press_s_key(Struct *temp, t_game_info *info, Struct *new_shape, int *count);
+
+// cmd_shape
+void		rotate_shape(Struct shape);
+Struct		copy_shape(Struct shape);
+int			check_shape(Struct shape, t_game_info *p);

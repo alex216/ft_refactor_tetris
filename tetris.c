@@ -24,7 +24,7 @@ int	main(void)
 	new_shape.row = 0;
 	destruct_shape(current);
 	current = new_shape;
-	if (validate_shape_move(current, &info) == false)
+	if (check_shape(current, &info) == false)
 	{
 		info.GameOn = false;
 	}
@@ -41,17 +41,17 @@ int	main(void)
 				break ;
 			case 'd':
 				temp.col++;
-				if (validate_shape_move(temp, &info))
+				if (check_shape(temp, &info))
 					current.col++;
 				break ;
 			case 'a':
 				temp.col--;
-				if (validate_shape_move(temp, &info))
+				if (check_shape(temp, &info))
 					current.col--;
 				break ;
 			case 'w':
 				rotate_shape(temp);
-				if (validate_shape_move(temp, &info))
+				if (check_shape(temp, &info))
 					rotate_shape(current);
 				break ;
 			}
