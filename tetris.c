@@ -4,17 +4,41 @@ char			Table[ROW_MAX][COL_MAX] = {0};
 struct timeval	before_now, now;
 Struct			current;
 
+void	print_screen(t_game_info *info)
 {
+	char	Buffer[ROW_MAX][COL_MAX] = {0};
 	int i, j;
 
+	for (i = 0; i < current.width; i++)
 	{
+		for (j = 0; j < current.width; j++)
+			if (current.array[i][j])
+				Buffer[current.row + i][current.col + j] = current.array[i][j];
 	}
+	clear();
+	for (i = 0; i < COL_MAX - 9; i++)
+		printw(" ");
+	printw("42 Tetris\n");
+	for (i = 0; i < ROW_MAX; i++)
 	{
+		for (j = 0; j < COL_MAX; j++)
+			printw("%c ", (Table[i][j] + Buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
+		printw("\n");
 	}
+	printw("\nScore: %d\n", info->final_score);
 }
 
+int	hasToUpdate(t_game_info *info)
 {
+	suseconds_t current_time;
+	suseconds_t previous_time;
 
+	current_time = now.tv_sec * 1000000 + now.tv_usec;
+	previous_time = before_now.tv_sec * 1000000 + before_now.tv_usec;
+	if (current_time - previous_time > info->timer)
+		return (true);
+	else
+		return (false);
 }
 
 void	display_result(t_game_info *info)
@@ -29,46 +53,18 @@ void	display_result(t_game_info *info)
 	printf("\nGame over!\n\nScore: %d\n", info->final_score);
 }
 
-void	print_screen(void)
 {
-	char	Buffer[ROW_MAX][COL_MAX] = {0};
-	int i, j;
 
-	for (i = 0; i < current.width; i++)
 	{
-		for (j = 0; j < current.width; j++)
 		{
-			if (current.array[i][j])
-				Buffer[current.row + i][current.col + j] = current.array[i][j];
+		}
+		{
 		}
 	}
-	clear();
-	for (i = 0; i < COL_MAX - 9; i++)
-		printw(" ");
-	printw("42 Tetris\n");
-	for (i = 0; i < ROW_MAX; i++)
-	{
-		for (j = 0; j < COL_MAX; j++)
-		{
-			printw("%c ", (Table[i][j] + Buffer[i][j]) ? '#' : '.');
-		}
-		printw("\n");
-	}
-	printw("\nScore: %d\n", final);
-}
-
-int	hasToUpdate(void)
-{
-	return (((suseconds_t)(now.tv_sec * 1000000 + now.tv_usec)
-			- ((suseconds_t)before_now.tv_sec * 1000000
-				+ before_now.tv_usec)) > timer);
 }
 
 int	main(void)
 {
-	int		c;
-	Struct	new_shape;
-	Struct	temp;
 	int			c;
 	Struct		new_shape;
 	Struct		temp;
