@@ -50,7 +50,7 @@ typedef struct shape
 }			t_shape;
 
 // Function prototypes
-typedef void (*switch_keypress_behaviour)(t_shape *, t_game_info *, t_shape *, int *);
+typedef void (*switch_keypress_behaviour)(t_shape *, t_game_info *, t_shape *);
 
 // global variable
 extern const t_shape	g_StructsArray[7];
@@ -72,6 +72,6 @@ void	rotate_shape(t_shape);
 void	destruct_shape(t_shape);
 
 // handle_key_press.c
-void	handle_key_press(char, t_game_info *, t_shape *, int *, t_shape *);
+void	handle_key_press(char, t_game_info *, t_shape *, t_shape *);
 
 #endif // TETRIS_H

@@ -1,10 +1,10 @@
 #include "tetris.h"
 
 void		_initiate_game(t_game_info *info);
-int			_check_autoupdate(t_game_info *info);
+int			_check_if_has_to_update(t_game_info *info);
 void		_print_screen(t_game_info *info);
-static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape, int *count);
-static void	_process_tetris(char c, t_game_info *info, t_shape *new_shape, int *count);
+static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape);
+static void	_process_tetris(t_game_info *info, t_shape *new_shape);
 static void	_display_result(t_game_info *info);
 int			main(void);
 
@@ -49,10 +49,11 @@ void	_initiate_game(t_game_info *info)
 	info->timer = STARTING_TIME;
 	info->GameOn = true;
 	info->decrease = DEFAULT_DECREASE_SPEED;
+	gettimeofday(&(info->before_now), NULL);
 }
 
 // checks if it is time to update the game state based on a timer
-int	_check_autoupdate(t_game_info *info)
+int	_check_if_has_to_update(t_game_info *info)
 {
 	suseconds_t current_time;
 	suseconds_t previous_time;
@@ -91,32 +92,33 @@ void	_print_screen(t_game_info *info)
 }
 
 // copy_shape, handle_key_input, free shape, then print
-static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape, int *count)
+static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape)
 {
 	t_shape temp;
 
 	temp = copy_shape(g_current);
-	handle_key_press(c, info, new_shape, count, &temp);
+	handle_key_press(c, info, new_shape, &temp);
 	destruct_shape(temp);
 	_print_screen(info);
 }
 
 // process main tetris program
-static void	_process_tetris(char c, t_game_info *info, t_shape *new_shape, int *count)
+static void	_process_tetris(t_game_info *info, t_shape *new_shape)
 {
+	char c;
+
 	// set the length of time getch() waits for input
 	timeout(1);
-
 	while (info->GameOn)
 	{
 		if ((c = getch()) != ERR)
 		{
-			_manage_a_frame(c, info, new_shape, count);
+			_manage_a_frame(c, info, new_shape);
 		}
 		gettimeofday(&(info->now), NULL);
-		if (_check_autoupdate(info))
+		if (_check_if_has_to_update(info))
 		{
-			_manage_a_frame('s', info, new_shape, count);
+			_manage_a_frame('s', info, new_shape);
 			gettimeofday(&(info->before_now), NULL);
 		}
 	}
@@ -139,8 +141,6 @@ int	main(void)
 {
 	t_game_info info;
 	t_shape		new_shape;
-	int			c;
-	int			count;
 
 	// initialize
 	_initiate_game(&info);
@@ -152,7 +152,7 @@ int	main(void)
 	_print_screen(&info);
 
 	// exec game unless GameOn is false during executing _manage_a_frame
-	_process_tetris(c, &info, &new_shape, &count);
+	_process_tetris(&info, &new_shape);
 
 	// finish program
 	destruct_shape(g_current);
