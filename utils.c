@@ -1,6 +1,5 @@
 #include "tetris.h"
 
-void	set_timeout(int time)
 const Struct	StructsArray[7] = {
 	{(char *[]){(char[]){0, 1, 1},
 				(char[]){1, 1, 0},
@@ -60,8 +59,6 @@ void	initiate_game(t_game_info *info)
  */
 void	rotate_shape(Struct shape)
 {
-	time = 1;
-	timeout(1);
 	Struct	temp;
 	int y, k, x;
 
@@ -98,4 +95,40 @@ Struct	copy_shape(Struct shape)
 	return (new_shape);
 }
 
+/**
+ * @brief Free struct shape.
+ *
+ * @param	shapt	The input shape to be freed.
+ */
+void	destruct_shape(Struct shape)
+{
+	int	i;
+
+	for (i = 0; i < shape.width; i++)
+		free(shape.array[i]);
+	free(shape.array);
+}
+
+/**
+ * @brief   Checks if placing the given shape at its current position is valid.
+ *
+ * This function verifies whether placing the provided shape at its current
+ * position on the game table is a valid move. It checks for collisions with
+ * the boundaries of the game table and other occupied cells.
+ *
+ * @param   shape   The input shape to be checked.
+ * @return  Returns true if placing the shape is valid, and false otherwise.
+ */
+int	validate_shape_move(Struct shape, t_game_info *info)
+{
+	char	**array;
+	int		i;
+	int		j;
+
+	array = shape.array;
+	for (i = 0; i < shape.width; i++)
+		for (j = 0; j < shape.width; j++)
+			if (IS_CELL_OCCUPIED && (IS_OUTSIDE_BOUNDS || IS_TABLE_OCCUPIED))
+				return (false);
+	return (true);
 }

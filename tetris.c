@@ -9,43 +9,24 @@ Struct			current;
 
 	{
 	}
-void	FunctionDS(Struct shape)
-{
-	int	i;
-
-	for (i = 0; i < shape.width; i++)
 	{
-		free(shape.array[i]);
 	}
-	free(shape.array);
-}
-
-int	FunctionCP(Struct shape)
-{
-	char	**array;
-	int		i;
-	int		j;
-
-	array = shape.array;
-	for (i = 0; i < shape.width; i++)
-	{
-		for (j = 0; j < shape.width; j++)
-		{
-			if ((shape.col + j < 0 || shape.col + j >= COL_MAX || shape.row + i >= ROW_MAX))
-			{
-				if (array[i][j])
-					return (false);
-			}
-			else if (Table[shape.row + i][shape.col + j] && array[i][j])
-				return (false);
-		}
-	}
-	return (true);
 }
 
 {
+
+}
+
+void	display_result(t_game_info *info)
+{
+	int x, y;
+	for (x = 0; x < ROW_MAX; x++)
 	{
+		for (y = 0; y < COL_MAX; y++)
+			printf("%c ", Table[x][y] ? BLOCK_CHAR : BLANK_CHAR);
+		printf("\n");
 	}
+	printf("\nGame over!\n\nScore: %d\n", info->final_score);
 }
 
 void	print_screen(void)
@@ -88,27 +69,34 @@ int	main(void)
 	int		c;
 	Struct	new_shape;
 	Struct	temp;
+	int			c;
+	Struct		new_shape;
+	Struct		temp;
+	t_game_info info;
+	int			count;
+
+	// initialize
+	initiate_game(&info);
 
 	srand(time(0));
-	final = 0;
 	initscr();
 	gettimeofday(&before_now, NULL);
-	set_timeout(1);
-	new_shape = FunctionCS(StructsArray[rand() % 7]);
+	timeout(1);
+	new_shape = copy_shape(StructsArray[rand() % 7]);
 	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 	new_shape.row = 0;
-	FunctionDS(current);
+	destruct_shape(current);
 	current = new_shape;
-	if (!FunctionCP(current))
+	if (validate_shape_move(current, &info) == false)
 	{
-		GameOn = false;
+		info.GameOn = false;
 	}
-	print_screen();
-	while (GameOn)
+	print_screen(&info);
+	while (info.GameOn)
 	{
 		if ((c = getch()) != ERR)
 		{
-			temp = FunctionCS(current);
+			temp = copy_shape(current);
 			switch (c)
 			{
 			case 's':
@@ -160,25 +148,25 @@ int	main(void)
 				break ;
 			case 'd':
 				temp.col++;
-				if (FunctionCP(temp))
+				if (validate_shape_move(temp, &info))
 					current.col++;
 				break ;
 			case 'a':
 				temp.col--;
-				if (FunctionCP(temp))
+				if (validate_shape_move(temp, &info))
 					current.col--;
 				break ;
 			case 'w':
-				FunctionRS(temp);
-				if (FunctionCP(temp))
-					FunctionRS(current);
+				rotate_shape(temp);
+				if (validate_shape_move(temp, &info))
+					rotate_shape(current);
 				break ;
 			}
-			FunctionDS(temp);
-			print_screen();
+			destruct_shape(temp);
+			print_screen(&info);
 		}
 		gettimeofday(&now, NULL);
-		if (hasToUpdate())
+		if (hasToUpdate(&info))
 		{
 			temp = FunctionCS(current);
 			switch ('s')
@@ -250,18 +238,8 @@ int	main(void)
 			gettimeofday(&before_now, NULL);
 		}
 	}
-	FunctionDS(current);
+	destruct_shape(current);
 	endwin();
-	int i, j;
-	for (i = 0; i < ROW_MAX; i++)
-	{
-		for (j = 0; j < COL_MAX; j++)
-		{
-			printf("%c ", Table[i][j] ? '#' : '.');
-		}
-		printf("\n");
-	}
-	printf("\nGame over!\n");
-	printf("\nScore: %d\n", final);
+	display_result(&info);
 	return (0);
 }
