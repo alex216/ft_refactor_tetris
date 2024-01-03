@@ -1,4 +1,5 @@
 // TODO: selection reason of global variable and game_info struct
+// TODO: where should variable be set
 
 #ifndef TETRIS_H
 #define TETRIS_H
@@ -37,6 +38,7 @@ typedef struct game_info
 	suseconds_t		timer;
 	char			GameOn;
 	int				decrease;
+	struct timeval	before_now, now;
 }	t_game_info;
 
 typedef struct shape
@@ -53,7 +55,7 @@ typedef void (*switch_keypress_behaviour)(t_shape *, t_game_info *, t_shape *, i
 // global variable
 extern const t_shape	g_StructsArray[7];
 extern char				Table[ROW_MAX][COL_MAX];
-extern struct timeval	before_now, now;
+// extern struct timeval	before_now, now;
 extern t_shape			g_current;
 
 // main.c

@@ -10,7 +10,6 @@ int			main(void);
 
 // global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};
-struct timeval	before_now, now;
 t_shape			g_current;
 const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
 	{(char *[]){(char[]){0, 1, 1},
@@ -58,8 +57,8 @@ int	_check_autoupdate(t_game_info *info)
 	suseconds_t current_time;
 	suseconds_t previous_time;
 
-	current_time = now.tv_sec * INTERVAL_MICROSECONDS + now.tv_usec;
-	previous_time = before_now.tv_sec * INTERVAL_MICROSECONDS + before_now.tv_usec;
+	current_time = info->now.tv_sec * INTERVAL_MICROSECONDS + info->now.tv_usec;
+	previous_time = info->before_now.tv_sec * INTERVAL_MICROSECONDS + info->before_now.tv_usec;
 	if (current_time - previous_time > info->timer)
 		return (true);
 	else
@@ -107,17 +106,18 @@ static void	_process_tetris(char c, t_game_info *info, t_shape *new_shape, int *
 {
 	// set the length of time getch() waits for input
 	timeout(1);
+
 	while (info->GameOn)
 	{
 		if ((c = getch()) != ERR)
 		{
 			_manage_a_frame(c, info, new_shape, count);
 		}
-		gettimeofday(&now, NULL);
+		gettimeofday(&(info->now), NULL);
 		if (_check_autoupdate(info))
 		{
 			_manage_a_frame('s', info, new_shape, count);
-			gettimeofday(&before_now, NULL);
+			gettimeofday(&(info->before_now), NULL);
 		}
 	}
 }
@@ -146,7 +146,6 @@ int	main(void)
 	_initiate_game(&info);
 	srand(time(0));
 	initscr();
-	gettimeofday(&before_now, NULL);
 
 	// create first shape then print
 	refresh_g_current_then_game_on(&info, &new_shape);
