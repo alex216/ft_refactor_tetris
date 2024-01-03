@@ -22,6 +22,7 @@ void	display_result(t_game_info *info)
 	printf("\nGame over!\n\nScore: %d\n", info->final_score);
 }
 
+// checks if it is time to update the game state based on a timer
 int	hasToUpdate(t_game_info *info)
 {
 	suseconds_t current_time;
@@ -35,17 +36,17 @@ int	hasToUpdate(t_game_info *info)
 		return (false);
 }
 
+// copy shape to Buffer, then print both Table and Buffer
 void	print_screen(t_game_info *info)
 {
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 	int i, j;
 
+	// copy g_current to Buffer
 	for (i = 0; i < g_current.width; i++)
-	{
 		for (j = 0; j < g_current.width; j++)
 			if (g_current.array[i][j])
 				Buffer[g_current.row + i][g_current.col + j] = g_current.array[i][j];
-	}
 	clear();
 	for (i = 0; i < COL_MAX - 9; i++)
 		printw(" ");
@@ -53,8 +54,20 @@ void	print_screen(t_game_info *info)
 	for (i = 0; i < ROW_MAX; i++)
 	{
 		for (j = 0; j < COL_MAX; j++)
+			// calculate Table and Buffer
 			printw("%c ", (Table[i][j] + Buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
 		printw("\n");
 	}
 	printw("\nScore: %d\n", info->final_score);
+}
+
+// create new shape
+t_shape	create_shape(void)
+{
+	t_shape new_shape;
+
+	new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
+	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
+	new_shape.row = 0;
+	return (new_shape);
 }

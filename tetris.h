@@ -58,8 +58,9 @@ void	initiate_game(t_game_info *p);
 int		hasToUpdate(t_game_info *p);
 void	print_screen(t_game_info *p);
 void	display_result(t_game_info *p);
+t_shape	create_shape(void);
 
-// cmd_shape.c
+// cmds_for_shape.c
 int		check_shape(t_shape shape, t_game_info *p);
 t_shape	copy_shape(t_shape shape);
 void	rotate_shape(t_shape shape);

@@ -1,7 +1,5 @@
 #include "tetris.h"
 
-// TODO: rotate q and e key
-
 // global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};
 struct timeval	before_now, now;
@@ -37,6 +35,7 @@ const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
 	}
 };
 
+// copy_shape, handle_key_input, free shape, then print
 static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape, int *count)
 {
 	t_shape temp;
@@ -49,22 +48,21 @@ static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape, int *
 
 int	main(void)
 {
-	int			c;
-	t_shape		new_shape;
 	t_game_info info;
+	t_shape		new_shape;
+	int			c;
 	int			count;
 
 	// initialize
 	initiate_game(&info);
-
 	srand(time(0));
 	initscr();
 	gettimeofday(&before_now, NULL);
 	timeout(1);
-	new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
-	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
-	new_shape.row = 0;
-	destruct_shape(g_current);
+
+	// create first shape
+	new_shape = create_shape();
+
 	g_current = new_shape;
 	if (check_shape(g_current, &info) == false)
 	{

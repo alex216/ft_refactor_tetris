@@ -8,12 +8,9 @@ void	destruct_shape(t_shape shape);
 /**
  * @brief   Checks if placing the given shape at its current position is valid.
  *
- * This function verifies whether placing the provided shape at its current
- * position on the game table is a valid move. It checks for collisions with
- * the boundaries of the game table and other occupied cells.
- *
- * @param   shape   The input shape to be checked.
- * @return  Returns true if placing the shape is valid, and false otherwise.
+ * @param   shape	The input shape to be checked.
+ * 			info
+ * @return  int		True if placing the shape is valid, and false otherwise.
  */
 int	check_shape(t_shape shape, t_game_info *info)
 {
@@ -30,14 +27,10 @@ int	check_shape(t_shape shape, t_game_info *info)
 }
 
 /**
- * @brief   Creates a copy of the given shape.
+ * @brief	Creates a copy of the given shape.
  *
- * This function takes a Struct representing a shape and creates a new copy
- * of it. The original shape remains unchanged, and the copied shape is
- * returned.
- *
- * @param   shape   The input shape to be copied.
- * @return  A new shape that is a copy of the input shape.
+ * @param	t_shape	The input shape to be copied.
+ * @return	t_shape	A new shape that is a copy of the input shape.
  */
 t_shape	copy_shape(t_shape shape)
 {
@@ -57,10 +50,6 @@ t_shape	copy_shape(t_shape shape)
 
 /**
  * @brief   Rotates the given shape 90 degrees clockwise.
- *
- * This function takes a Struct representing a shape and rotates it 90 degrees
- * clockwise. The original shape remains unchanged, and the rotated shape is
- * returned.
  *
  * @param   shape   The input shape to be rotated.
  */
@@ -91,7 +80,7 @@ void	rotate_shape(t_shape shape)
 }
 
 /**
- * @brief Free struct shape.
+ * @brief	Free struct shape.
  *
  * @param	shapt	The input shape to be freed.
  */
