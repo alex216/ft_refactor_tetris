@@ -52,4 +52,30 @@ void	initiate_game(t_game_info *info)
 {
 	time = 1;
 	timeout(1);
+/**
+ * @brief   Creates a copy of the given shape.
+ *
+ * This function takes a Struct representing a shape and creates a new copy
+ * of it. The original shape remains unchanged, and the copied shape is
+ * returned.
+ *
+ * @param   shape   The input shape to be copied.
+ * @return  A new shape that is a copy of the input shape.
+ */
+Struct	copy_shape(Struct shape)
+{
+	Struct	new_shape;
+	int i, j;
+
+	new_shape = shape;
+	new_shape.array = (char **)malloc(new_shape.width * sizeof(char *));
+	for (i = 0; i < new_shape.width; i++)
+	{
+		new_shape.array[i] = (char *)malloc(new_shape.width * sizeof(char));
+		for (j = 0; j < new_shape.width; j++)
+			new_shape.array[i][j] = shape.array[i][j];
+	}
+	return (new_shape);
+}
+
 }

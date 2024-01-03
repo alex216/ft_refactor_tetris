@@ -36,7 +36,6 @@ extern char			Table[ROW_MAX][COL_MAX];
 
 // main
 int			main(void);
-Struct		FunctionCS(Struct shape);
 void		FunctionDS(Struct shape);
 int			FunctionCP(Struct shape);
 void		FunctionRS(Struct shape);
@@ -45,3 +44,4 @@ int			hasToUpdate(void);
 
 // utils
 void		set_timeout(int time);
+Struct		copy_shape(Struct shape);
