@@ -50,23 +50,24 @@ extern char				Table[ROW_MAX][COL_MAX];
 extern struct timeval	before_now, now;
 extern t_shape			g_current;
 
-// tetris.c
+// main.c
 int		main(void);
+void	refresh_g_current_then_game_on(t_game_info *, t_shape *);
 
 // utils.c
-void	initiate_game(t_game_info *p);
-int		hasToUpdate(t_game_info *p);
-void	print_screen(t_game_info *p);
-void	display_result(t_game_info *p);
+void	initiate_game(t_game_info *);
+int		hasToUpdate(t_game_info *);
+void	print_screen(t_game_info *);
+void	display_result(t_game_info *);
 t_shape	create_shape(void);
 
 // cmds_for_shape.c
-int		check_shape(t_shape shape, t_game_info *p);
-t_shape	copy_shape(t_shape shape);
-void	rotate_shape(t_shape shape);
-void	destruct_shape(t_shape shape);
+int		check_shape(t_shape, t_game_info *);
+t_shape	copy_shape(t_shape);
+void	rotate_shape(t_shape);
+void	destruct_shape(t_shape);
 
 // handle_key_press.c
-void	handle_key_press(char c, t_game_info *info, t_shape *new_shape, int *count, t_shape *temp);
+void	handle_key_press(char, t_game_info *, t_shape *, int *, t_shape *);
 
 #endif // TETRIS_H

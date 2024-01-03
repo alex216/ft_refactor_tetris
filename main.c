@@ -61,13 +61,8 @@ int	main(void)
 	timeout(1);
 
 	// create first shape
-	new_shape = create_shape();
+	refresh_g_current_then_game_on(&info, &new_shape);
 
-	g_current = new_shape;
-	if (check_shape(g_current, &info) == false)
-	{
-		info.GameOn = false;
-	}
 	print_screen(&info);
 	while (info.GameOn)
 	{

@@ -53,6 +53,7 @@ static void _check_if_any_line(t_game_info *info, t_shape *new_shape, int *count
 			if (g_current.array[i][j])
 				Table[g_current.row + i][g_current.col + j] = g_current.array[i][j];
 	*count = 0;
+	// remap Table[][] one line after another from top line
 	for (n = 0; n < ROW_MAX; n++)
 	{
 		sum = 0;
@@ -61,23 +62,19 @@ static void _check_if_any_line(t_game_info *info, t_shape *new_shape, int *count
 		if (sum == COL_MAX)
 		{
 			(*count)++;
+			// remap above line n of Table[][]
 			int l, k;
 			for (k = n; k >= 1; k--)
 				for (l = 0; l < COL_MAX; l++)
 					Table[k][l] = Table[k - 1][l];
+			// fill zero at the top line
 			for (l = 0; l < COL_MAX; l++)
 				Table[k][l] = 0;
 			info->timer -= info->decrease--;
 		}
 	}
 	info->final_score += 100 * *count; // add to final score
-	*new_shape = create_shape();
-	destruct_shape(g_current);
-	g_current = *new_shape;
-	if (check_shape(g_current, info) == false)
-	{
-		info->GameOn = false;
-	}
+	refresh_g_current_then_game_on(info, new_shape);
 }
 
 // switch according to key input using function pointer
