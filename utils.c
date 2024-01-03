@@ -40,11 +40,11 @@ void	print_screen(t_game_info *info)
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 	int i, j;
 
-	for (i = 0; i < current.width; i++)
+	for (i = 0; i < g_current.width; i++)
 	{
-		for (j = 0; j < current.width; j++)
-			if (current.array[i][j])
-				Buffer[current.row + i][current.col + j] = current.array[i][j];
+		for (j = 0; j < g_current.width; j++)
+			if (g_current.array[i][j])
+				Buffer[g_current.row + i][g_current.col + j] = g_current.array[i][j];
 	}
 	clear();
 	for (i = 0; i < COL_MAX - 9; i++)
@@ -59,21 +59,21 @@ void	print_screen(t_game_info *info)
 	printw("\nScore: %d\n", info->final_score);
 }
 
-void	press_s_key(Struct *temp, t_game_info *info, Struct *new_shape, int *count)
+void	press_s_key(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count)
 {
 	int i, j, n, m, sum;
 
 	temp->row++;
 	if (check_shape(*temp, info))
-		current.row++;
+		g_current.row++;
 	else
 	{
-		for (i = 0; i < current.width; i++)
+		for (i = 0; i < g_current.width; i++)
 		{
-			for (j = 0; j < current.width; j++)
+			for (j = 0; j < g_current.width; j++)
 			{
-				if (current.array[i][j])
-					Table[current.row + i][current.col + j] = current.array[i][j];
+				if (g_current.array[i][j])
+					Table[g_current.row + i][g_current.col + j] = g_current.array[i][j];
 			}
 		}
 		*count = 0;
@@ -94,14 +94,13 @@ void	press_s_key(Struct *temp, t_game_info *info, Struct *new_shape, int *count)
 				info->timer -= info->decrease--;
 			}
 		}
-		// count line
-		info->final_score += 100 * *count;
-		*new_shape = copy_shape(StructsArray[rand() % 7]);
+		info->final_score += 100 * *count; // count line
+		*new_shape = copy_shape(g_StructsArray[rand() % 7]);
 		new_shape->col = rand() % (COL_MAX - new_shape->width + 1);
 		new_shape->row = 0;
-		destruct_shape(current);
-		current = *new_shape;
-		if (!check_shape(current, info))
+		destruct_shape(g_current);
+		g_current = *new_shape;
+		if (!check_shape(g_current, info))
 		{
 			info->GameOn = false;
 		}
