@@ -39,6 +39,8 @@ typedef struct
 // global variable
 extern const Struct	StructsArray[7];
 extern char			Table[ROW_MAX][COL_MAX];
+extern struct timeval	before_now, now;
+extern Struct			current;
 
 // main
 int			main(void);
@@ -52,3 +54,4 @@ void		rotate_shape(Struct shape);
 Struct		copy_shape(Struct shape);
 void		display_result(t_game_info *p);
 void		destruct_shape(Struct shape);
+void	press_s_key(Struct *temp, t_game_info *info, Struct *new_shape, int *count);
