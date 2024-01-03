@@ -37,11 +37,20 @@ const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
 	}
 };
 
+static void _manage_a_frame(char c, t_game_info *info, t_shape *new_shape, int *count)
+{
+	t_shape temp;
+
+	temp = copy_shape(g_current);
+	handle_key_press(c, info, new_shape, count, &temp);
+	destruct_shape(temp);
+	print_screen(info);
+}
+
 int	main(void)
 {
 	int			c;
 	t_shape		new_shape;
-	t_shape		temp;
 	t_game_info info;
 	int			count;
 
@@ -66,39 +75,12 @@ int	main(void)
 	{
 		if ((c = getch()) != ERR)
 		{
-			temp = copy_shape(g_current);
-			handle_key_press(c, &info, &new_shape, &count, &temp);
-			// switch (c)
-			// {
-			// case 's':
-			// 	press_s_key(&temp, &info, &new_shape, &count);
-			// 	break ;
-			// case 'd':
-			// 	temp.col++;
-			// 	if (check_shape(temp, &info))
-			// 		g_current.col++;
-			// 	break ;
-			// case 'a':
-			// 	temp.col--;
-			// 	if (check_shape(temp, &info))
-			// 		g_current.col--;
-			// 	break ;
-			// case 'w':
-			// 	rotate_shape(temp);
-			// 	if (check_shape(temp, &info))
-			// 		rotate_shape(g_current);
-			// 	break ;
-			// }
-			destruct_shape(temp);
-			print_screen(&info);
+			_manage_a_frame(c, &info, &new_shape, &count);
 		}
 		gettimeofday(&now, NULL);
 		if (hasToUpdate(&info))
 		{
-			temp = copy_shape(g_current);
-			press_s_key(&temp, &info, &new_shape, &count);
-			destruct_shape(temp);
-			print_screen(&info);
+			_manage_a_frame('s', &info, &new_shape, &count);
 			gettimeofday(&before_now, NULL);
 		}
 	}

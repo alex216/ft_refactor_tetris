@@ -41,33 +41,31 @@ typedef struct shape
 	int		col;
 }			t_shape;
 
+// Function prototypes
+typedef void (*switch_keypress_behaviour)(t_shape *, t_game_info *, t_shape *, int *);
+
 // global variable
 extern const t_shape	g_StructsArray[7];
-extern char			Table[ROW_MAX][COL_MAX];
+extern char				Table[ROW_MAX][COL_MAX];
 extern struct timeval	before_now, now;
 extern t_shape			g_current;
 
 // tetris.c
-int			main(void);
+int		main(void);
 
 // utils.c
-void		initiate_game(t_game_info *p);
-int			hasToUpdate(t_game_info *p);
-void		print_screen(t_game_info *p);
-void		display_result(t_game_info *p);
-void		press_s_key(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
+void	initiate_game(t_game_info *p);
+int		hasToUpdate(t_game_info *p);
+void	print_screen(t_game_info *p);
+void	display_result(t_game_info *p);
 
 // cmd_shape.c
-int			check_shape(t_shape shape, t_game_info *p);
-t_shape		copy_shape(t_shape shape);
-void		rotate_shape(t_shape shape);
-void		destruct_shape(t_shape shape);
+int		check_shape(t_shape shape, t_game_info *p);
+t_shape	copy_shape(t_shape shape);
+void	rotate_shape(t_shape shape);
+void	destruct_shape(t_shape shape);
 
-
-void handle_key_press(char c, t_game_info *info, t_shape *new_shape, int *count, t_shape *temp);
-void move_right(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
-void move_left(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
-void rotate(t_shape *temp, t_game_info *info, t_shape *new_shape, int *count);
-
+// handle_key_press.c
+void	handle_key_press(char c, t_game_info *info, t_shape *new_shape, int *count, t_shape *temp);
 
 #endif // TETRIS_H
