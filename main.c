@@ -43,10 +43,7 @@ void	_print_screen(t_game_info *info)
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 
 	// copy g_current to Buffer
-	for (int i = 0; i < g_current.width; i++)
-		for (int j = 0; j < g_current.width; j++)
-			if (g_current.array[i][j])
-				Buffer[g_current.row + i][g_current.col + j] = g_current.array[i][j];
+	copy_g_current_shape_to_map(&Buffer);
 
 	// clear screen, print game title
 	clear();
@@ -71,7 +68,7 @@ static void _manage_frame(const char c, t_game_info *info)
 {
 	t_shape temp = copy_shape(g_current);
 
-	handle_key_press(c, info, temp);
+	control_key_press(c, info, temp);
 	destruct_shape(temp);
 	_print_screen(info);
 }
@@ -92,8 +89,10 @@ static void	_process_tetris(t_game_info *info)
 		gettimeofday(&(info->now), NULL);
 		if (_check_if_has_to_update(info))
 		{
+			info->is_s_key_fall = false;
 			_manage_frame('s', info);
 			gettimeofday(&(info->before_now), NULL);
+			info->is_s_key_fall = true;
 		}
 	}
 }

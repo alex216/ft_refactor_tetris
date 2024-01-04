@@ -1,8 +1,8 @@
 #include "tetris.h"
 
 void	refresh_g_current_then_check_game_on(t_game_info *info);
+void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
 
-// create new shape and check if game over
 void	refresh_g_current_then_check_game_on(t_game_info *info)
 {
 	// refresh g current
@@ -13,4 +13,12 @@ void	refresh_g_current_then_check_game_on(t_game_info *info)
 	// check whether game may continue
 	if (check_shape(g_current, info) == false)
 		info->GameOn = false;
+}
+
+void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
+{
+	for (int i = 0; i < g_current.width; i++)
+		for (int j = 0; j < g_current.width; j++)
+			if (g_current.array[i][j])
+				(*table)[g_current.row + i][g_current.col + j] = g_current.array[i][j];
 }

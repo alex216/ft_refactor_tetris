@@ -38,8 +38,9 @@ typedef struct game_info
 {
 	int				final_score; 
 	suseconds_t		timer;
-	char			GameOn;
+	bool			GameOn;
 	int				decrease;
+	bool			is_s_key_fall;
 	struct timeval	before_now, now;
 }	t_game_info;
 
@@ -64,9 +65,13 @@ int		main(void);
 
 // utils.c
 void	refresh_g_current_then_check_game_on(t_game_info *);
+void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
 
 // handle_key_press.c
-void	handle_key_press(const char, t_game_info *, t_shape);
+void	control_key_press(const char, t_game_info *, t_shape);
+
+// move_down.c
+void	move_down(t_shape temp, t_game_info *info);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);
