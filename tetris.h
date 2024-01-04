@@ -32,6 +32,8 @@
 		shape.row + i >= ROW_MAX\
 	)
 
+typedef int t_bool;
+
 typedef struct game_info
 {
 	int				final_score; 
@@ -50,28 +52,27 @@ typedef struct shape
 }			t_shape;
 
 // Function prototypes
-typedef void (*switch_keypress_behaviour)(t_shape *, t_game_info *, t_shape *);
+typedef void (*switch_keypress_behaviour)(t_shape , t_game_info *);
 
 // global variable
 extern const t_shape	g_StructsArray[7];
 extern char				Table[ROW_MAX][COL_MAX];
-// extern struct timeval	before_now, now;
 extern t_shape			g_current;
 
 // main.c
 int		main(void);
 
 // utils.c
-void	refresh_g_current_then_game_on(t_game_info *, t_shape *);
+void	refresh_g_current_then_check_game_on(t_game_info *);
+
+// handle_key_press.c
+void	handle_key_press(const char, t_game_info *, t_shape);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);
-int		check_shape(t_shape, t_game_info *);
-t_shape	copy_shape(t_shape);
-void	rotate_shape(t_shape);
-void	destruct_shape(t_shape);
-
-// handle_key_press.c
-void	handle_key_press(char, t_game_info *, t_shape *, t_shape *);
+int		check_shape(const t_shape, const t_game_info *);
+t_shape	copy_shape(const t_shape);
+void	rotate_shape(const t_shape);
+void	destruct_shape(const t_shape);
 
 #endif // TETRIS_H

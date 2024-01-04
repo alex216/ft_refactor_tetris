@@ -1,55 +1,55 @@
 #include "tetris.h"
 #include <stdbool.h>
 
-static void	_move_right(t_shape *temp, t_game_info *info, t_shape *new_shape);
-static void _move_left(t_shape *temp, t_game_info *info, t_shape *new_shape);
-static void _rotate(t_shape *temp, t_game_info *info, t_shape *new_shape);
-static void	_move_down(t_shape *temp, t_game_info *info, t_shape *new_shape);
-static void _check_if_any_line(t_game_info *info, t_shape *new_shape);
-void 		handle_key_press(char c, t_game_info *info, t_shape *new_shape, t_shape *temp);
+static void	_move_right(t_shape temp, t_game_info *info);
+static void _move_left(t_shape temp, t_game_info *info);
+static void _rotate(t_shape temp, t_game_info *info);
+static void	_move_down(t_shape temp, t_game_info *info);
+static void _check_if_any_line(t_game_info *info);
+void 		handle_key_press(const char c, t_game_info *info, t_shape temp);
 
 // move shape to right
-static void	_move_right(t_shape *temp, t_game_info *info, t_shape *new_shape)
+static void	_move_right(t_shape temp, t_game_info *info)
 {
-    temp->col++;
-    if (check_shape(*temp, info))
+    temp.col++;
+    if (check_shape(temp, info))
         g_current.col++;
 }
 
 // move shape to left
-static void _move_left(t_shape *temp, t_game_info *info, t_shape *new_shape)
+static void _move_left(t_shape temp, t_game_info *info)
 {
-    temp->col--;
-    if (check_shape(*temp, info))
+    temp.col--;
+    if (check_shape(temp, info))
         g_current.col--;
 }
 
 // rotate shape clockwise
-static void _rotate(t_shape *temp, t_game_info *info, t_shape *new_shape)
+static void _rotate(t_shape temp, t_game_info *info)
 {
-    rotate_shape(*temp);
-    if (check_shape(*temp, info))
+    rotate_shape(temp);
+    if (check_shape(temp, info))
         rotate_shape(g_current);
 }
 
 // move down
-static void	_move_down(t_shape *temp, t_game_info *info, t_shape *new_shape)
+static void	_move_down(t_shape temp, t_game_info *info)
 {
-	temp->row++;
-	if (check_shape(*temp, info) == true)
+	temp.row++;
+	if (check_shape(temp, info) == true)
 		g_current.row++;
 	else
-		_check_if_any_line(info, new_shape);
+		_check_if_any_line(info);
 }
 
 // check if newly added shape shapes line
-static void _check_if_any_line(t_game_info *info, t_shape *new_shape)
+static void _check_if_any_line(t_game_info *info)
 {
-	int i, j, n, m, sum, count;
+	int n, m, sum, count;
 
 	// copy g_current to Table
-	for (i = 0; i < g_current.width; i++)
-		for (j = 0; j < g_current.width; j++)
+	for (int i = 0; i < g_current.width; i++)
+		for (int j = 0; j < g_current.width; j++)
 			if (g_current.array[i][j])
 				Table[g_current.row + i][g_current.col + j] = g_current.array[i][j];
 	count = 0;
@@ -74,11 +74,11 @@ static void _check_if_any_line(t_game_info *info, t_shape *new_shape)
 		}
 	}
 	info->final_score += 100 * count; // add to final score
-	refresh_g_current_then_game_on(info, new_shape);
+	refresh_g_current_then_check_game_on(info);
 }
 
 // switch according to key input using function pointer
-void handle_key_press(char c, t_game_info *info, t_shape *new_shape, t_shape *temp)
+void handle_key_press(const char c, t_game_info *info, t_shape temp)
 {
 	int	index = -1;
 
@@ -96,5 +96,5 @@ void handle_key_press(char c, t_game_info *info, t_shape *new_shape, t_shape *te
 		_rotate
 	};
     if (index != -1)
-        keyFunctions[index](temp, info, new_shape);
+        keyFunctions[index](temp, info);
 }
