@@ -5,7 +5,8 @@
 ![](https://github.com/alex216/ft_refactor_tetris/blob/main/output.gif)
  
 # Features
-just plain good old tetris
+* just plain good old tetris.
+* except only the game scores when s-key is pressed when it forms vertical line.
 
 # Requirement
 * the c compiler `gcc`
@@ -22,4 +23,4 @@ make
 ```
  
 # License
-this tetris is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+* this tetris is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
