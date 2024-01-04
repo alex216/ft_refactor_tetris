@@ -1,6 +1,7 @@
 
 # DEMO
 * play demo
+
 ![](https://github.com/alex216/ft_refactor_tetris/blob/main/output.gif)
  
 # Features
