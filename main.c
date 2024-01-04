@@ -8,7 +8,6 @@ static void	_process_tetris(t_game_info *info);
 static void	_display_result(t_game_info *info);
 int			main(void);
 
-
 // initialize t_game_info struct variable
 void	_initialize_game(t_game_info *info)
 {
