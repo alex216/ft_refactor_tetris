@@ -1,3 +1,4 @@
 tetris
 tetris_backup.c
 tags
+*.dSYM
