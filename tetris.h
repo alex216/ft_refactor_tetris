@@ -21,6 +21,9 @@
 #define STARTING_TIME 400000
 #define INTERVAL_MICROSECONDS 1000000
 
+// comment out this line to obay to cursus pdf
+#define OBAY_ORIGINAL_CODE
+
 // macro for readability
 #define NUMBER_OF_TOTAL_SHAPES (sizeof(g_StructsArray) / sizeof(g_StructsArray[0]))
 #define IS_CELL_OCCUPIED (array[i][j])

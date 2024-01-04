@@ -1,7 +1,7 @@
 #include "tetris.h"
 
 static void _remap_table(const int max_row);
-static void _count_vanish_line(t_game_info *info);
+static void _count_vanish_line_then_add_score(t_game_info *info);
 void		move_down(t_shape temp, t_game_info *info);
 
 // remap from above
@@ -17,7 +17,7 @@ void	_remap_table(const int max_row)
 }
 
 // count tetris vanish line
-static void _count_vanish_line(t_game_info *info)
+static void _count_vanish_line_then_add_score(t_game_info *info)
 {
 	int sum, count;
 
@@ -35,8 +35,13 @@ static void _count_vanish_line(t_game_info *info)
 			info->timer -= info->decrease--;
 		}
 	}
+	//
+	#ifdef OBAY_ORIGINAL_CODE
 	if (info->is_s_key_fall == true)
-		info->final_score += 100 * count; // add to final score
+		info->final_score += 100 * count;
+	#else
+	info->final_score += 100 * count;
+	#endif
 }
 
 // move down
@@ -51,7 +56,7 @@ void	move_down(t_shape temp, t_game_info *info)
 		copy_g_current_shape_to_map(&Table);
 
 		// refresh score
-		_count_vanish_line(info);
+		_count_vanish_line_then_add_score(info);
 
 		// refresh global shape
 		refresh_g_current_then_check_game_on(info);
