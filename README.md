@@ -2,7 +2,7 @@
 # DEMO
 * play demo
 
-![](https://github.com/alex216/ft_refactor_tetris/blob/main/output.gif)
+![](https://github.com/alex216/ft_refactor_tetris/blob/main/etc/output.gif)
  
 # Features
 * just plain good old tetris.
