@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 static void _remap_table(const int max_row);
 static void _count_vanish_line_then_add_score(t_game_info *info);

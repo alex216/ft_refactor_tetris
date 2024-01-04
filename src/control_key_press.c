@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 static void	_move_right(t_shape temp, t_game_info *info);
 static void _move_left(t_shape temp, t_game_info *info);

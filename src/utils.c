@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 void	refresh_g_current_then_check_game_on(t_game_info *info);
 void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);

@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 t_shape	create_shape(void);
 int		check_shape(const t_shape shape, const t_game_info *info);

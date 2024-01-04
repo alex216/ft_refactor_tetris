@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 // global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};

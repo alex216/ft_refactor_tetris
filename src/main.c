@@ -1,4 +1,4 @@
-#include "tetris.h"
+#include "../inc/tetris.h"
 
 void		_initialize_game(t_game_info *info);
 t_bool		_check_if_has_to_update(t_game_info *info);
