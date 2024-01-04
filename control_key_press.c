@@ -2,7 +2,7 @@
 
 static void	_move_right(t_shape temp, t_game_info *info);
 static void _move_left(t_shape temp, t_game_info *info);
-static void _rotate(t_shape temp, t_game_info *info);
+static void _move_rotate(t_shape temp, t_game_info *info);
 static void _compound_func(t_game_info *info);
 void 		control_key_press(const char c, t_game_info *info, t_shape temp);
 
@@ -23,7 +23,7 @@ static void _move_left(t_shape temp, t_game_info *info)
 }
 
 // rotate shape clockwise
-static void _rotate(t_shape temp, t_game_info *info)
+static void _move_rotate(t_shape temp, t_game_info *info)
 {
     rotate_shape(temp);
     if (check_shape(temp, info))
@@ -34,6 +34,12 @@ static void _rotate(t_shape temp, t_game_info *info)
 void control_key_press(const char c, t_game_info *info, t_shape temp)
 {
 	int	index = -1;
+	const switch_keypress_behaviour keyFunctions[] = {
+		move_down,
+		_move_right,
+		_move_left,
+		_move_rotate
+	};
 
     switch (c) {
         case 's': index = 0; break;
@@ -42,12 +48,6 @@ void control_key_press(const char c, t_game_info *info, t_shape temp)
         case 'w': index = 3; break;
 		default : break;
     }
-	switch_keypress_behaviour keyFunctions[] = {
-		move_down,
-		_move_right,
-		_move_left,
-		_rotate
-	};
     if (index != -1)
         keyFunctions[index](temp, info);
 }

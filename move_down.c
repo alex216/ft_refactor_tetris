@@ -35,7 +35,7 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 			info->timer -= info->decrease--;
 		}
 	}
-	//
+	// choose to obay original code or pdf
 	#ifdef OBAY_ORIGINAL_CODE
 	if (info->is_s_key_fall == true)
 		info->final_score += 100 * count;

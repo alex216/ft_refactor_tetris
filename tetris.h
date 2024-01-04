@@ -1,6 +1,3 @@
-// TODO: selection reason of global variable and game_info struct
-// TODO: where should variable be set
-
 #ifndef TETRIS_H
 #define TETRIS_H
 
@@ -70,7 +67,7 @@ int		main(void);
 void	refresh_g_current_then_check_game_on(t_game_info *);
 void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
 
-// handle_key_press.c
+// control_key_press.c
 void	control_key_press(const char, t_game_info *, t_shape);
 
 // move_down.c
