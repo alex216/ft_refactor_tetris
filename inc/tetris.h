@@ -1,3 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tetris.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
+/*   Updated: 2024/01/05 13:37:22 by yliu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+// TODO:	split refresh_g_current_then_check_game_on
+// TODO:	move "move_down func" to control_key_press file, make it static
+// 			then, create new func in new file to use inside move_down else statment
+
 #ifndef TETRIS_H
 #define TETRIS_H
 
