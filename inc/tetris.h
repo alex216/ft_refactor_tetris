@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 13:37:22 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:08:39 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
 // control_key_press.c
 void	control_key_press(const char, t_game_info *, t_shape);
 
-// move_down.c
-void	move_down(t_shape temp, t_game_info *info);
+// proceed_update_score_and_map.c
+void	proceed_update_score_and_map(t_game_info *info);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);

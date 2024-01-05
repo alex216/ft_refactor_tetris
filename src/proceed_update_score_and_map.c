@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_down.c                                        :+:      :+:    :+:   */
+/*   proceed_update_score_and_map.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 13:37:25 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:08:24 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void _remap_table(const int max_row);
 static void _count_vanish_line_then_add_score(t_game_info *info);
-void		move_down(t_shape temp, t_game_info *info);
+void		proceed_update_score_and_map(t_game_info *info);
 
 // remap from above
 void	_remap_table(const int max_row)
@@ -56,21 +56,14 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 	#endif
 }
 
-// move down
-void	move_down(t_shape temp, t_game_info *info)
+void	proceed_update_score_and_map(t_game_info *info)
 {
-	temp.row++;
-	if (check_shape_with_map(temp, info) == true)
-		g_current.row++;
-	else
-	{
-		// copy global shape to global Table
-		copy_g_current_shape_to_map(&Table);
+	// copy global shape to global Table
+	copy_g_current_shape_to_map(&Table);
 
-		// refresh score
-		_count_vanish_line_then_add_score(info);
+	// refresh score
+	_count_vanish_line_then_add_score(info);
 
-		// refresh global shape
-		refresh_g_current_then_check_game_on(info);
-	}
+	// refresh global shape
+	refresh_g_current_then_check_game_on(info);
 }
