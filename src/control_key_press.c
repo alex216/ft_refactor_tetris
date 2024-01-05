@@ -10,7 +10,7 @@ void 		control_key_press(const char c, t_game_info *info, t_shape temp);
 static void	_move_right(t_shape temp, t_game_info *info)
 {
     temp.col++;
-    if (check_shape(temp, info))
+    if (check_shape_with_map(temp, info))
         g_current.col++;
 }
 
@@ -18,7 +18,7 @@ static void	_move_right(t_shape temp, t_game_info *info)
 static void _move_left(t_shape temp, t_game_info *info)
 {
     temp.col--;
-    if (check_shape(temp, info))
+    if (check_shape_with_map(temp, info))
         g_current.col--;
 }
 
@@ -26,7 +26,7 @@ static void _move_left(t_shape temp, t_game_info *info)
 static void _move_rotate(t_shape temp, t_game_info *info)
 {
     rotate_shape(temp);
-    if (check_shape(temp, info))
+    if (check_shape_with_map(temp, info))
         rotate_shape(g_current);
 }
 

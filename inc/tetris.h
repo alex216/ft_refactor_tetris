@@ -75,7 +75,7 @@ void	move_down(t_shape temp, t_game_info *info);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);
-int		check_shape(const t_shape, const t_game_info *);
+int		check_shape_with_map(const t_shape, const t_game_info *);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);

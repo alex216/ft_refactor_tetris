@@ -11,7 +11,7 @@ void	refresh_g_current_then_check_game_on(t_game_info *info)
 	g_current = new_shape;
 
 	// check whether game may continue
-	if (check_shape(g_current, info) == false)
+	if (check_shape_with_map(g_current, info) == false)
 		info->GameOn = false;
 }
 

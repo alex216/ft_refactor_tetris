@@ -48,7 +48,7 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 void	move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
-	if (check_shape(temp, info) == true)
+	if (check_shape_with_map(temp, info) == true)
 		g_current.row++;
 	else
 	{
