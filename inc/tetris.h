@@ -6,12 +6,12 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:23:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:45:07 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO:	split refresh_g_current_then_check_game_on
 // TODO:	write better algorithm of _count_vanish_line_then_add_score
+// TODO:	leak check with malloc
 
 #ifndef TETRIS_H
 #define TETRIS_H
@@ -84,7 +84,7 @@ void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 void	control_key_press(const char, t_game_info *, t_shape);
 
 // proceed_update_score_and_map.c
-void	proceed_update_score_and_map(t_game_info *info);
+void	proceed_update_score_and_map(t_game_info *);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);
