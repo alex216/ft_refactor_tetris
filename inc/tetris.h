@@ -6,22 +6,22 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 23:07:22 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 23:15:55 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO:	global_variables
-// TODO:	write better algorithm of _count_vanish_line_then_add_score
-// TODO:	leak check with malloc
-// TODO:	break down game_info
-// TODO:	change the name KeyFunction
-// TODO:	delete useless comments
+// TODO:	leak check with malloc when failed
+// TODO:	break down game_info struct			yliu
+// TODO:	function pointer					yliu
 
-// TODO:	function pointer
-// TODO:	makefile include
 // TODO:	true false
 // TODO:	prototypes delete
 // TODO:	refresh_g_current make it together
+// TODO:	change the name KeyFunction
+// TODO:	makefile include
+// TODO:	delete useless comments
+// TODO:	write better algorithm of _count_vanish_line_then_add_score
 
 #ifndef TETRIS_H
 #define TETRIS_H
