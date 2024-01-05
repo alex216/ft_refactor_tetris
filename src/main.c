@@ -1,15 +1,15 @@
 #include "../inc/tetris.h"
 
-void		_initialize_game(t_game_info *info);
-t_bool		_check_if_has_to_update(t_game_info *info);
-void		_print_screen(t_game_info *info);
-static void _manage_frame(const char c, t_game_info *info);
-static void	_process_tetris(t_game_info *info);
-static void	_display_result(t_game_info *info);
-int			main(void);
+static void		_initialize_game(t_game_info *info);
+static t_bool	_check_if_has_to_update(t_game_info *info);
+static void		_print_screen(t_game_info *info);
+static void 	_manage_frame(const char c, t_game_info *info);
+static void		_process_tetris(t_game_info *info);
+static void		_display_result(t_game_info *info);
+int				main(void);
 
 // initialize t_game_info struct variable
-void	_initialize_game(t_game_info *info)
+static void	_initialize_game(t_game_info *info)
 {
 	// set score to zero
 	info->final_score = 0;
@@ -28,7 +28,7 @@ void	_initialize_game(t_game_info *info)
 }
 
 // checks if it is time to update the game state based on a timer
-t_bool	_check_if_has_to_update(t_game_info *info)
+static t_bool	_check_if_has_to_update(t_game_info *info)
 {
 	suseconds_t current_time = info->now.tv_sec * INTERVAL_MICROSECONDS + info->now.tv_usec;
 	suseconds_t previous_time = info->before_now.tv_sec * INTERVAL_MICROSECONDS + info->before_now.tv_usec;
@@ -37,7 +37,7 @@ t_bool	_check_if_has_to_update(t_game_info *info)
 }
 
 // copy shape to Buffer, then print both Table and Buffer
-void	_print_screen(t_game_info *info)
+static void	_print_screen(t_game_info *info)
 {
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 
