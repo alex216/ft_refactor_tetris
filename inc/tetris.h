@@ -6,13 +6,12 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:08:39 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:23:04 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO:	split refresh_g_current_then_check_game_on
-// TODO:	move "move_down func" to control_key_press file, make it static
-// 			then, create new func in new file to use inside move_down else statment
+// TODO:	write better algorithm of _count_vanish_line_then_add_score
 
 #ifndef TETRIS_H
 #define TETRIS_H
@@ -33,9 +32,6 @@
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
 #define INTERVAL_MICROSECONDS 1000000
-
-// comment out this line to obay cursus subject pdf requirement
-// #define OBAY_ORIGINAL_CODE
 
 // macro for readability
 #define NUMBER_OF_TOTAL_SHAPES (sizeof(g_StructsArray) / sizeof(g_StructsArray[0]))
@@ -80,8 +76,9 @@ extern t_shape			g_current;
 int		main(void);
 
 // utils.c
-void	refresh_g_current_then_check_game_on(t_game_info *);
-void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
+void	refresh_g_current(t_game_info *);
+void	check_game_on_with_g_current(t_game_info *);
+void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 
 // control_key_press.c
 void	control_key_press(const char, t_game_info *, t_shape);

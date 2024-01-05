@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 13:37:34 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:32:13 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,12 @@ static void		_process_tetris(t_game_info *info);
 static void		_display_result(t_game_info *info);
 int				main(void);
 
-// initialize t_game_info struct variable
 static void	_initialize_game(t_game_info *info)
 {
-	// set score to zero
 	info->final_score = 0;
-
-	// set starting interval of game speed 
 	info->timer = STARTING_TIME;
-
-	// set variable to control game to continue
 	info->GameOn = true;
-
-	// set speed of decreasing regarding interval
 	info->decrease = DEFAULT_DECREASE_SPEED;
-
-	// set current time
 	gettimeofday(&(info->before_now), NULL);
 }
 
@@ -130,7 +120,7 @@ int	main(void)
 	initscr();
 
 	// exec game unless GameOn is false during executing _manage_a_frame
-	refresh_g_current_then_check_game_on(&info);
+	refresh_g_current(&info);
 	_print_screen(&info);
 	_process_tetris(&info);
 

@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:08:24 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 15:31:23 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,13 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 			info->timer -= info->decrease--;
 		}
 	}
-	// choose to obay original code or pdf
-	#ifdef OBAY_ORIGINAL_CODE
-	if (info->is_s_key_fall == true)
-		info->final_score += 100 * count * COL_MAX;
-	#else
 	info->final_score += 100 * count * COL_MAX;
-	#endif
 }
 
 void	proceed_update_score_and_map(t_game_info *info)
 {
-	// copy global shape to global Table
 	copy_g_current_shape_to_map(&Table);
-
-	// refresh score
 	_count_vanish_line_then_add_score(info);
-
-	// refresh global shape
-	refresh_g_current_then_check_game_on(info);
+	refresh_g_current(info);
+	check_game_on_with_g_current(info);
 }
