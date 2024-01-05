@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:32:13 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 21:14:52 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ static void	_process_tetris(t_game_info *info)
 		gettimeofday(&(info->now), NULL);
 		if (_check_if_has_to_update(info))
 		{
-			info->is_s_key_fall = false;
 			_manage_frame('s', info);
 			gettimeofday(&(info->before_now), NULL);
-			info->is_s_key_fall = true;
 		}
 	}
 }

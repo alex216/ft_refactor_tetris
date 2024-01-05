@@ -6,12 +6,22 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:45:07 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/05 23:07:22 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO:	global_variables
 // TODO:	write better algorithm of _count_vanish_line_then_add_score
 // TODO:	leak check with malloc
+// TODO:	break down game_info
+// TODO:	change the name KeyFunction
+// TODO:	delete useless comments
+
+// TODO:	function pointer
+// TODO:	makefile include
+// TODO:	true false
+// TODO:	prototypes delete
+// TODO:	refresh_g_current make it together
 
 #ifndef TETRIS_H
 #define TETRIS_H
@@ -52,7 +62,6 @@ typedef struct game_info
 	suseconds_t		timer;
 	bool			GameOn;
 	int				decrease;
-	bool			is_s_key_fall;
 	struct timeval	before_now, now;
 }	t_game_info;
 
