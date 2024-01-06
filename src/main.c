@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:56:38 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 16:24:03 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static void _manage_frame(const char c, t_game_info *info)
 	_print_screen(info);
 }
 
+static bool	_is_valid_key_pressed(const char key)
+{
+	return (key == 'w' || key == 'a' || key == 's' || key == 'd');
+}
+
 // process main tetris program
 static void	_process_tetris(t_game_info *info)
 {
@@ -76,7 +81,7 @@ static void	_process_tetris(t_game_info *info)
 	while (info->GameOn)
 	{
 		// check key input is valid
-		if ((c = getch()) != ERR)
+		if ((c = getch()) != ERR && _is_valid_key_pressed(c))
 			_manage_frame(c, info);
 		// check time to update no matter key input
 		gettimeofday(&(info->now), NULL);
