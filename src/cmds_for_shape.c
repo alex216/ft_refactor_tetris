@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_for_shape.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 20:53:35 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:15 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-t_shape	create_shape(void);
-int		check_shape_with_map(const t_shape shape, const t_game_info *info);
-t_shape	copy_shape(const t_shape shape);
-void	rotate_shape(const t_shape shape);
-void	destruct_shape(const t_shape shape);
 
 // create new shape
 t_shape	create_shape(void)

@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:32:32 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:29 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-void	refresh_g_current(t_game_info *info);
-void	check_game_on_with_g_current(t_game_info *info);
-void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
 
 void	refresh_g_current(t_game_info *info)
 {

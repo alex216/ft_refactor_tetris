@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   proceed_update_score_and_map.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:31:23 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:09 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-static void _remap_table(const int max_row);
-static void _count_vanish_line_then_add_score(t_game_info *info);
-void		proceed_update_score_and_map(t_game_info *info);
 
 // remap from above
 void	_remap_table(const int max_row)

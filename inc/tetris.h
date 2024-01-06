@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 23:15:55 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:52:55 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 // TODO:	break down game_info struct			yliu
 // TODO:	function pointer					yliu
 
-// TODO:	true false
-// TODO:	prototypes delete
 // TODO:	refresh_g_current make it together
 // TODO:	change the name KeyFunction
 // TODO:	makefile include

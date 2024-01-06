@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 21:14:52 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:23 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-static void		_initialize_game(t_game_info *info);
-static t_bool	_check_if_has_to_update(t_game_info *info);
-static void		_print_screen(t_game_info *info);
-static void 	_manage_frame(const char c, t_game_info *info);
-static void		_process_tetris(t_game_info *info);
-static void		_display_result(t_game_info *info);
-int				main(void);
 
 static void	_initialize_game(t_game_info *info)
 {

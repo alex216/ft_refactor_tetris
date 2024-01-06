@@ -6,17 +6,11 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:50:49 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:00 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-static void	_move_right(t_shape temp, t_game_info *info);
-static void _move_left(t_shape temp, t_game_info *info);
-static void _move_rotate(t_shape temp, t_game_info *info);
-static void	_move_down(t_shape temp, t_game_info *info);
-void 		control_key_press(const char c, t_game_info *info, t_shape temp);
 
 // move down
 void	_move_down(t_shape temp, t_game_info *info)
