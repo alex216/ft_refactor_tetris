@@ -6,11 +6,11 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:53:09 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:56:38 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tetris.h"
+#include "tetris.h"
 
 // remap from above
 void	_remap_table(const int max_row)

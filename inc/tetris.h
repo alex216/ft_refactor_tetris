@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:52:55 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:54:42 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 // TODO:	refresh_g_current make it together
 // TODO:	change the name KeyFunction
-// TODO:	makefile include
 // TODO:	delete useless comments
 // TODO:	write better algorithm of _count_vanish_line_then_add_score
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   global_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:38:01 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 13:38:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:56:38 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tetris.h"
+#include "tetris.h"
 
 // global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};
