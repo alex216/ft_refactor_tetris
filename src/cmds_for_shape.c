@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:56:38 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 18:20:02 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,18 @@ int	check_shape_with_map(const t_shape shape, const t_game_info *info)
 t_shape	copy_shape(const t_shape shape)
 {
 	t_shape	new_shape = shape;
-	new_shape.array = (char **)malloc(shape.width * sizeof(char *));
+	new_shape.array = (char **)calloc(shape.width , sizeof(char *)); // change malloc to calloc for destruct_shape
+	if (!new_shape.array)
+		exit(1);
 
 	for (int i = 0; i < shape.width; i++)
 	{
 		new_shape.array[i] = (char *)malloc(shape.width * sizeof(char));
+		if (!new_shape.array[i])
+		{
+			destruct_shape(new_shape);
+			exit(1);
+		}
 		for (int j = 0; j < shape.width; j++)
 			new_shape.array[i][j] = shape.array[i][j];
 	}
@@ -80,6 +87,10 @@ void	rotate_shape(const t_shape shape)
 void	destruct_shape(const t_shape shape)
 {
 	for (int i = 0; i < shape.width; i++)
+	{
+		if (!shape.array[i])
+			break ;
 		free(shape.array[i]);
+	}
 	free(shape.array);
 }

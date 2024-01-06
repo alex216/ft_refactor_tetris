@@ -6,12 +6,11 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:54:42 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/06 18:21:17 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO:	global_variables
-// TODO:	leak check with malloc when failed
 // TODO:	break down game_info struct			yliu
 // TODO:	function pointer					yliu
 
