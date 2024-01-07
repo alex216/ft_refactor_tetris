@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 23:15:55 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 11:07:15 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 #define IS_CELL_OCCUPIED (array[i][j])
 #define IS_TABLE_OCCUPIED (Table[shape.row + i][shape.col + j])
 #define IS_OUTSIDE_BOUNDS \
-	(\
-		shape.col + j < 0 || \
-		shape.col + j >= COL_MAX || \
-		shape.row + i >= ROW_MAX\
+	(									\
+		shape.col + j < 0 			|| 	\
+		shape.col + j >= COL_MAX	||	\
+		shape.row + i >= ROW_MAX		\
 	)
 
 typedef int t_bool;
@@ -73,8 +73,11 @@ typedef struct shape
 	int		col;
 }			t_shape;
 
-// Function prototypes
-typedef void (*switch_keypress_behaviour)(t_shape , t_game_info *);
+typedef struct s_key_action_dictionary
+{
+	const char	pressed_key;
+	void		(*key_action_function)(t_shape, t_game_info *);
+}				t_key_action_dictionary;
 
 // global variable
 extern const t_shape	g_StructsArray[7];
@@ -90,7 +93,7 @@ void	check_game_on_with_g_current(t_game_info *);
 void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 
 // control_key_press.c
-void	control_key_press(const char, t_game_info *, t_shape);
+void	control_key_press(const char pressed_key, t_game_info *, t_shape);
 
 // proceed_update_score_and_map.c
 void	proceed_update_score_and_map(t_game_info *);

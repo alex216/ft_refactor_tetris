@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:10:27 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 10:59:41 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,23 @@ void	_move_down(t_shape temp, t_game_info *info)
 }
 
 // switch according to key input using function pointer
-void control_key_press(const char c, t_game_info *info, t_shape temp)
+void control_key_press(const char pressed_key, t_game_info *info, t_shape shape_under_control)
 {
-	int	index = -1;
-	const switch_keypress_behaviour keyFunctions[] = {
-		_move_down,
-		_move_right,
-		_move_left,
-		_move_rotate
+	static const t_key_action_dictionary	key_action[] = {
+		{'d', _move_right},
+		{'a', _move_left},
+		{'w', _move_rotate},
+		{'s', _move_down}
 	};
 
-    switch (c) {
-        case 's': index = 0; break;
-        case 'd': index = 1; break;
-        case 'a': index = 2; break;
-        case 'w': index = 3; break;
-		default : break;
-    }
-    if (index != -1)
-        keyFunctions[index](temp, info);
+	int i = 0;
+	while (i < sizeof(key_action) / sizeof(key_action[0]))
+	{
+		if (key_action[i].pressed_key == pressed_key)
+		{
+			key_action[i].key_action_function(shape_under_control, info);
+			break;
+		}
+		i++;
+	}
 }

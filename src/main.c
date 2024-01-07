@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 21:14:52 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 11:00:34 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static void	_print_screen(t_game_info *info)
 }
 
 // copy_shape, handle_key_input, free shape, then print
-static void _manage_frame(const char c, t_game_info *info)
+static void _manage_frame(const char pressed_key, t_game_info *info)
 {
-	t_shape temp = copy_shape(g_current);
+	t_shape shape_under_control = copy_shape(g_current);
 
-	control_key_press(c, info, temp);
-	destruct_shape(temp);
+	control_key_press(pressed_key, info, shape_under_control);
+	destruct_shape(shape_under_control);
 	_print_screen(info);
 }
 
