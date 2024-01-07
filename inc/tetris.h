@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   tetris.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
 /*   Updated: 2024/01/07 14:28:55 by yliu             ###   ########.fr       */
@@ -11,15 +11,11 @@
 /* ************************************************************************** */
 
 // TODO:	global_variables
-// TODO:	leak check with malloc when failed
 // TODO:	break down game_info struct			yliu
 // TODO:	function pointer					yliu
 
-// TODO:	true false
-// TODO:	prototypes delete
 // TODO:	refresh_g_current make it together
 // TODO:	change the name KeyFunction
-// TODO:	makefile include
 // TODO:	delete useless comments
 // TODO:	write better algorithm of _count_vanish_line_then_add_score
 

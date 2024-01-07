@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_for_shape.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 14:22:22 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 17:14:24 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tetris.h"
+#include "tetris.h"
 
 // create new shape
 t_shape	create_shape(void)
@@ -39,11 +39,18 @@ int	check_shape_with_map(const t_shape shape)
 t_shape	copy_shape(const t_shape shape)
 {
 	t_shape	new_shape = shape;
-	new_shape.array = (char **)malloc(shape.width * sizeof(char *));
+	new_shape.array = (char **)calloc(shape.width , sizeof(char *)); // change malloc to calloc for destruct_shape
+	if (!new_shape.array)
+		exit(1);
 
 	for (int i = 0; i < shape.width; i++)
 	{
 		new_shape.array[i] = (char *)malloc(shape.width * sizeof(char));
+		if (!new_shape.array[i])
+		{
+			destruct_shape(new_shape);
+			exit(1);
+		}
 		for (int j = 0; j < shape.width; j++)
 			new_shape.array[i][j] = shape.array[i][j];
 	}
