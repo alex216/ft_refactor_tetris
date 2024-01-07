@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 23:15:55 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 14:28:55 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,20 @@
 
 typedef int t_bool;
 
+typedef struct	s_game_clock
+{
+	suseconds_t		interval_time;
+	int				decrease_ms;
+	struct timeval	before_now;
+	struct timeval	now;
+}					t_game_clock;
+
 typedef struct game_info
 {
 	int				final_score; 
-	suseconds_t		timer;
 	bool			GameOn;
-	int				decrease;
-	struct timeval	before_now, now;
-}	t_game_info;
+	t_game_clock	clock;
+}					t_game_info;
 
 typedef struct shape
 {
@@ -85,8 +91,8 @@ extern t_shape			g_current;
 int		main(void);
 
 // utils.c
-void	refresh_g_current(t_game_info *);
-void	check_game_on_with_g_current(t_game_info *);
+void	refresh_g_current(void);
+void	check_game_on_with_g_current(bool *);
 void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 
 // control_key_press.c
@@ -97,7 +103,7 @@ void	proceed_update_score_and_map(t_game_info *);
 
 // cmds_for_shape.c
 t_shape	create_shape(void);
-int		check_shape_with_map(const t_shape, const t_game_info *);
+int		check_shape_with_map(const t_shape);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);

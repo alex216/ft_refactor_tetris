@@ -6,40 +6,32 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 21:14:52 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 14:42:52 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
 
-static void		_initialize_game(t_game_info *info);
-static t_bool	_check_if_has_to_update(t_game_info *info);
-static void		_print_screen(t_game_info *info);
-static void 	_manage_frame(const char c, t_game_info *info);
-static void		_process_tetris(t_game_info *info);
-static void		_display_result(t_game_info *info);
-int				main(void);
-
 static void	_initialize_game(t_game_info *info)
 {
 	info->final_score = 0;
-	info->timer = STARTING_TIME;
+	info->clock.interval_time = STARTING_TIME;
 	info->GameOn = true;
-	info->decrease = DEFAULT_DECREASE_SPEED;
-	gettimeofday(&(info->before_now), NULL);
+	info->clock.decrease_ms = DEFAULT_DECREASE_SPEED;
+	gettimeofday(&(info->clock.before_now), NULL);
 }
 
 // checks if it is time to update the game state based on a timer
-static t_bool	_check_if_has_to_update(t_game_info *info)
+static t_bool	_check_if_has_to_update(t_game_clock game_clock)
 {
-	suseconds_t current_time = info->now.tv_sec * INTERVAL_MICROSECONDS + info->now.tv_usec;
-	suseconds_t previous_time = info->before_now.tv_sec * INTERVAL_MICROSECONDS + info->before_now.tv_usec;
+	suseconds_t current_time = game_clock.now.tv_sec * INTERVAL_MICROSECONDS + game_clock.now.tv_usec;
+	suseconds_t previous_time = game_clock.before_now.tv_sec * INTERVAL_MICROSECONDS + game_clock.before_now.tv_usec;
 
-	return (current_time - previous_time > info->timer);
+	return (current_time - previous_time > game_clock.interval_time);
 }
 
 // copy shape to Buffer, then print both Table and Buffer
-static void	_print_screen(t_game_info *info)
+static void	_print_screen(int final_score)
 {
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 
@@ -61,7 +53,7 @@ static void	_print_screen(t_game_info *info)
 	}
 
 	// display current score
-	printw("\nScore: %d\n", info->final_score);
+	printw("\nScore: %d\n", final_score);
 }
 
 // copy_shape, handle_key_input, free shape, then print
@@ -71,7 +63,7 @@ static void _manage_frame(const char c, t_game_info *info)
 
 	control_key_press(c, info, temp);
 	destruct_shape(temp);
-	_print_screen(info);
+	_print_screen(info->final_score);
 }
 
 // process main tetris program
@@ -87,17 +79,17 @@ static void	_process_tetris(t_game_info *info)
 		if ((c = getch()) != ERR)
 			_manage_frame(c, info);
 		// check time to update no matter key input
-		gettimeofday(&(info->now), NULL);
-		if (_check_if_has_to_update(info))
+		gettimeofday(&(info->clock.now), NULL);
+		if (_check_if_has_to_update(info->clock))
 		{
 			_manage_frame('s', info);
-			gettimeofday(&(info->before_now), NULL);
+			gettimeofday(&(info->clock.before_now), NULL);
 		}
 	}
 }
 
 // display result
-static void	_display_result(t_game_info *info)
+static void	_display_result(int final_score)
 {
 	for (int x = 0; x < ROW_MAX; x++)
 	{
@@ -105,7 +97,7 @@ static void	_display_result(t_game_info *info)
 			printf("%c ", Table[x][y] ? BLOCK_CHAR : BLANK_CHAR);
 		printf("\n");
 	}
-	printf("\nGame over!\n\nScore: %d\n", info->final_score);
+	printf("\nGame over!\n\nScore: %d\n", final_score);
 }
 
 int	main(void)
@@ -118,14 +110,15 @@ int	main(void)
 	initscr();
 
 	// exec game unless GameOn is false during executing _manage_a_frame
-	refresh_g_current(&info);
-	_print_screen(&info);
+	refresh_g_current();
+	check_game_on_with_g_current(&(info.GameOn));
+	_print_screen(info.final_score);
 	_process_tetris(&info);
 
 	// finish program
 	destruct_shape(g_current);
 	endwin();
-	_display_result(&info);
+	_display_result(info.final_score);
 
 	return (0);
 }

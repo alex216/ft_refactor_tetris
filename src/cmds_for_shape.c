@@ -6,17 +6,11 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 20:53:35 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 14:22:22 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/tetris.h"
-
-t_shape	create_shape(void);
-int		check_shape_with_map(const t_shape shape, const t_game_info *info);
-t_shape	copy_shape(const t_shape shape);
-void	rotate_shape(const t_shape shape);
-void	destruct_shape(const t_shape shape);
 
 // create new shape
 t_shape	create_shape(void)
@@ -30,7 +24,7 @@ t_shape	create_shape(void)
 }
 
 // checks if placing the given shape at its current position is valid
-int	check_shape_with_map(const t_shape shape, const t_game_info *info)
+int	check_shape_with_map(const t_shape shape)
 {
 	const char	**array = (const char **)shape.array;
 

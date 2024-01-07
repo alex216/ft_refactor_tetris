@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 15:10:27 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 14:23:13 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void 		control_key_press(const char c, t_game_info *info, t_shape temp);
 static void	_move_right(t_shape temp, t_game_info *info)
 {
     temp.col++;
-    if (check_shape_with_map(temp, info))
+    if (check_shape_with_map(temp))
         g_current.col++;
 }
 
@@ -30,7 +30,7 @@ static void	_move_right(t_shape temp, t_game_info *info)
 static void _move_left(t_shape temp, t_game_info *info)
 {
     temp.col--;
-    if (check_shape_with_map(temp, info))
+    if (check_shape_with_map(temp))
         g_current.col--;
 }
 
@@ -38,7 +38,7 @@ static void _move_left(t_shape temp, t_game_info *info)
 static void _move_rotate(t_shape temp, t_game_info *info)
 {
     rotate_shape(temp);
-    if (check_shape_with_map(temp, info))
+    if (check_shape_with_map(temp))
         rotate_shape(g_current);
 }
 
@@ -46,7 +46,7 @@ static void _move_rotate(t_shape temp, t_game_info *info)
 void	_move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
-	if (check_shape_with_map(temp, info) == true)
+	if (check_shape_with_map(temp) == true)
 		g_current.row++;
 	else
 		proceed_update_score_and_map(info);
