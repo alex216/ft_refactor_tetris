@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 18:20:02 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/07 17:14:24 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,6 @@ void	rotate_shape(const t_shape shape)
 void	destruct_shape(const t_shape shape)
 {
 	for (int i = 0; i < shape.width; i++)
-	{
-		if (!shape.array[i])
-			break ;
 		free(shape.array[i]);
-	}
 	free(shape.array);
 }
