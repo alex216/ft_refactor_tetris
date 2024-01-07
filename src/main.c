@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/05 21:14:52 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/06 16:24:03 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tetris.h"
-
-static void		_initialize_game(t_game_info *info);
-static t_bool	_check_if_has_to_update(t_game_info *info);
-static void		_print_screen(t_game_info *info);
-static void 	_manage_frame(const char c, t_game_info *info);
-static void		_process_tetris(t_game_info *info);
-static void		_display_result(t_game_info *info);
-int				main(void);
+#include "tetris.h"
 
 static void	_initialize_game(t_game_info *info)
 {
@@ -74,6 +66,11 @@ static void _manage_frame(const char c, t_game_info *info)
 	_print_screen(info);
 }
 
+static bool	_is_valid_key_pressed(const char key)
+{
+	return (key == 'w' || key == 'a' || key == 's' || key == 'd');
+}
+
 // process main tetris program
 static void	_process_tetris(t_game_info *info)
 {
@@ -84,7 +81,7 @@ static void	_process_tetris(t_game_info *info)
 	while (info->GameOn)
 	{
 		// check key input is valid
-		if ((c = getch()) != ERR)
+		if ((c = getch()) != ERR && _is_valid_key_pressed(c))
 			_manage_frame(c, info);
 		// check time to update no matter key input
 		gettimeofday(&(info->now), NULL);
