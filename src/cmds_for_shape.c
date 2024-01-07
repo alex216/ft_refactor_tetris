@@ -6,13 +6,12 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 17:14:24 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/07 20:39:03 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-// create new shape
 t_shape	create_shape(void)
 {
 	t_shape new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
@@ -23,7 +22,6 @@ t_shape	create_shape(void)
 	return (new_shape);
 }
 
-// checks if placing the given shape at its current position is valid
 int	check_shape_with_map(const t_shape shape, const t_game_info *info)
 {
 	const char	**array = (const char **)shape.array;
@@ -35,11 +33,10 @@ int	check_shape_with_map(const t_shape shape, const t_game_info *info)
 	return (true);
 }
 
-// creates a copy of the given shape
 t_shape	copy_shape(const t_shape shape)
 {
 	t_shape	new_shape = shape;
-	new_shape.array = (char **)calloc(shape.width , sizeof(char *)); // change malloc to calloc for destruct_shape
+	new_shape.array = (char **)calloc(shape.width , sizeof(char *));
 	if (!new_shape.array)
 		exit(1);
 
@@ -57,7 +54,6 @@ t_shape	copy_shape(const t_shape shape)
 	return (new_shape);
 }
 
-// rotates the given shape 90 degrees clockwise
 void	rotate_shape(const t_shape shape)
 {
 	int rx, ry;
@@ -83,7 +79,6 @@ void	rotate_shape(const t_shape shape)
 	destruct_shape(temp);
 }
 
-// free struct shape
 void	destruct_shape(const t_shape shape)
 {
 	for (int i = 0; i < shape.width; i++)

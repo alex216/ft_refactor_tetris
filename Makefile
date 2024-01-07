@@ -6,11 +6,12 @@
 #    By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 13:37:51 by yliu              #+#    #+#              #
-#    Updated: 2024/01/06 15:55:53 by kaksano          ###   ########.fr        #
+#    Updated: 2024/01/07 20:40:16 by yliu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_DIR	=	./src
+CLFAGS		=	-Wall -Wextra -Werror
 SRCS		=	main.c \
 				utils.c \
 				cmds_for_shape.c \

@@ -6,13 +6,12 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:38:01 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/06 15:56:38 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/07 20:30:43 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-// global definitions
 char			Table[ROW_MAX][COL_MAX] = {0};
 t_shape			g_current;
 const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
