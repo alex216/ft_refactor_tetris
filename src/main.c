@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 11:00:34 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/07 22:22:26 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/tetris.h"
-
-static void		_initialize_game(t_game_info *info);
-static t_bool	_check_if_has_to_update(t_game_info *info);
-static void		_print_screen(t_game_info *info);
-static void 	_manage_frame(const char c, t_game_info *info);
-static void		_process_tetris(t_game_info *info);
-static void		_display_result(t_game_info *info);
-int				main(void);
+#include "tetris.h"
 
 static void	_initialize_game(t_game_info *info)
 {
@@ -29,7 +21,6 @@ static void	_initialize_game(t_game_info *info)
 	gettimeofday(&(info->before_now), NULL);
 }
 
-// checks if it is time to update the game state based on a timer
 static t_bool	_check_if_has_to_update(t_game_info *info)
 {
 	suseconds_t current_time = info->now.tv_sec * INTERVAL_MICROSECONDS + info->now.tv_usec;
@@ -38,21 +29,17 @@ static t_bool	_check_if_has_to_update(t_game_info *info)
 	return (current_time - previous_time > info->timer);
 }
 
-// copy shape to Buffer, then print both Table and Buffer
 static void	_print_screen(t_game_info *info)
 {
 	char	Buffer[ROW_MAX][COL_MAX] = {0};
 
-	// copy g_current to Buffer
 	copy_g_current_shape_to_map(&Buffer);
 
-	// clear screen, print game title
 	clear();
 	for (int i = 0; i < COL_MAX - 9; i++)
 		printw(" ");
 	printw("42 Tetris\n");
 
-	// display block and blank by adding Table and Buffer
 	for (int i = 0; i < ROW_MAX; i++)
 	{
 		for (int j = 0; j < COL_MAX; j++)
@@ -60,11 +47,9 @@ static void	_print_screen(t_game_info *info)
 		printw("\n");
 	}
 
-	// display current score
 	printw("\nScore: %d\n", info->final_score);
 }
 
-// copy_shape, handle_key_input, free shape, then print
 static void _manage_frame(const char pressed_key, t_game_info *info)
 {
 	t_shape shape_under_control = copy_shape(g_current);
@@ -74,7 +59,11 @@ static void _manage_frame(const char pressed_key, t_game_info *info)
 	_print_screen(info);
 }
 
-// process main tetris program
+static bool	_is_valid_key_pressed(const char key)
+{
+	return (key == 'w' || key == 'a' || key == 's' || key == 'd');
+}
+
 static void	_process_tetris(t_game_info *info)
 {
 	char c;
@@ -83,10 +72,9 @@ static void	_process_tetris(t_game_info *info)
 	timeout(1);
 	while (info->GameOn)
 	{
-		// check key input is valid
-		if ((c = getch()) != ERR)
+		if ((c = getch()) != ERR && _is_valid_key_pressed(c))
 			_manage_frame(c, info);
-		// check time to update no matter key input
+
 		gettimeofday(&(info->now), NULL);
 		if (_check_if_has_to_update(info))
 		{
@@ -96,7 +84,6 @@ static void	_process_tetris(t_game_info *info)
 	}
 }
 
-// display result
 static void	_display_result(t_game_info *info)
 {
 	for (int x = 0; x < ROW_MAX; x++)
@@ -112,17 +99,14 @@ int	main(void)
 {
 	t_game_info info;
 
-	// initialize
 	_initialize_game(&info);
 	srand(time(0));
 	initscr();
 
-	// exec game unless GameOn is false during executing _manage_a_frame
-	refresh_g_current(&info);
+	check_game_then_refresh_g_current(&info);
 	_print_screen(&info);
 	_process_tetris(&info);
 
-	// finish program
 	destruct_shape(g_current);
 	endwin();
 	_display_result(&info);

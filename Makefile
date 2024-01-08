@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yliu <yliu@student.42.jp>                  +#+  +:+       +#+         #
+#    By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 13:37:51 by yliu              #+#    #+#              #
-#    Updated: 2024/01/05 15:44:51 by yliu             ###   ########.fr        #
+#    Updated: 2024/01/07 20:40:16 by yliu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_DIR	=	./src
+CLFAGS		=	-Wall -Wextra -Werror
 SRCS		=	main.c \
 				utils.c \
 				cmds_for_shape.c \
@@ -21,7 +22,7 @@ SRCS		=	main.c \
 SRCS_PATH	:=	$(addprefix $(SRCS_DIR)/, $(SRCS))
 
 tetris: $(SRCS_PATH) ./inc/tetris.h
-	gcc $(CFLAGS) $(SRCS_PATH) -I ./inc/tetris.h -lncurses -o tetris
+	gcc $(CFLAGS) $(SRCS_PATH) -I./inc/ -lncurses -o tetris
 
 re:
 	rm -rf tetris
