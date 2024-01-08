@@ -6,13 +6,13 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 22:22:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/08 16:15:22 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-void	_move_down(t_shape temp, t_game_info *info)
+static void	_move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
 	if (check_shape_with_map(temp, info))
@@ -42,23 +42,22 @@ static void _move_rotate(t_shape temp, t_game_info *info)
         rotate_shape(g_current);
 }
 
-void control_key_press(const char pressed_key, t_game_info *info, t_shape shape_under_control)
+void control_key_press(const char pressed_key, t_game_info *info)
 {
 	static const t_key_action_dictionary	key_action[] = {
-		{'d', _move_right},
-		{'a', _move_left},
-		{'w', _move_rotate},
-		{'s', _move_down}
+		{RIGHT_KEY, _move_right},
+		{LEFT_KEY, _move_left},
+		{ROTATE_KEY, _move_rotate},
+		{DOWN_KEY, _move_down}
 	};
 
-	int i = 0;
-	while (i < sizeof(key_action) / sizeof(key_action[0]))
+	for (int i = 0; i < sizeof(key_action) / sizeof(key_action[0]); i++)
 	{
 		if (key_action[i].pressed_key == pressed_key)
 		{
+			t_shape shape_under_control = copy_shape(g_current);
 			key_action[i].key_action_function(shape_under_control, info);
-			break;
+			destruct_shape(shape_under_control);
 		}
-		i++;
 	}
 }
