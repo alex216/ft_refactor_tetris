@@ -6,12 +6,13 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 14:30:56 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:24:32 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
+void	refresh_g_current(void)
 {
 	const t_shape	new_shape = create_shape();
 

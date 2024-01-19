@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 14:23:13 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:23:53 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	_move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
-	if (check_shape_with_map(temp, info))
+	if (check_shape_with_map(temp))
 		g_current.row++;
 	else
 		proceed_update_score_and_map(info);
