@@ -15,7 +15,7 @@
 static void	_move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
-	if (check_shape_with_map(temp))
+	if (check_shape_with_map(temp, info->Table))
 		g_current.row++;
 	else
 		proceed_update_score_and_map(info);
@@ -24,21 +24,21 @@ static void	_move_down(t_shape temp, t_game_info *info)
 static void	_move_right(t_shape temp, t_game_info *info)
 {
     temp.col++;
-    if (check_shape_with_map(temp))
+    if (check_shape_with_map(temp, info->Table))
         g_current.col++;
 }
 
 static void _move_left(t_shape temp, t_game_info *info)
 {
     temp.col--;
-    if (check_shape_with_map(temp))
+    if (check_shape_with_map(temp, info->Table))
         g_current.col--;
 }
 
 static void _move_rotate(t_shape temp, t_game_info *info)
 {
     rotate_shape(temp);
-    if (check_shape_with_map(temp))
+    if (check_shape_with_map(temp, info->Table))
         rotate_shape(g_current);
 }
 

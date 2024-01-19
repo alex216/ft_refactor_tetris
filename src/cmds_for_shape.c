@@ -22,7 +22,7 @@ t_shape	create_shape(void)
 	return (new_shape);
 }
 
-int	check_shape_with_map(const t_shape shape)
+int	check_shape_with_map(const t_shape shape, char table[ROW_MAX][COL_MAX])
 {
 	const char	**array = (const char **)shape.array;
 

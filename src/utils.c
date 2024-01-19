@@ -20,9 +20,9 @@ void	refresh_g_current(void)
 	g_current = new_shape;
 }
 
-void	check_game_on_with_g_current(bool *GameOn)
+void	check_game_on_with_g_current(bool *GameOn, char table[ROW_MAX][COL_MAX])
 {
-		*GameOn = check_shape_with_map(g_current);
+		*GameOn = check_shape_with_map(g_current, table);
 }
 
 void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
@@ -34,12 +34,12 @@ void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
 					+ j] = g_current.array[i][j];
 }
 
-void	print_screen(int final_score)
+void	print_screen(int final_score, char table[ROW_MAX][COL_MAX])
 {
-	char	Buffer[ROW_MAX][COL_MAX] = {0};
+	char	buffer[ROW_MAX][COL_MAX] = {0};
 	char	*title = "42 Tetris";
 
-	copy_g_current_shape_to_map(&Buffer);
+	copy_g_current_shape_to_map(&buffer);
 
 	clear();
 	for (int i = 0; i < COL_MAX - strlen(title); i++)
@@ -49,7 +49,7 @@ void	print_screen(int final_score)
 	for (int i = 0; i < ROW_MAX; i++)
 	{
 		for (int j = 0; j < COL_MAX; j++)
-			printw("%c ", (Table[i][j] + Buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
+			printw("%c ", (table[i][j] + buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
 		printw("\n");
 	}
 

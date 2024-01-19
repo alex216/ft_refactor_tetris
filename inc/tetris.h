@@ -37,7 +37,7 @@
 #define INTERVAL_MS 1000000
 #define NUMBER_OF_TOTAL_SHAPES 7
 #define IS_CELL_OCCUPIED (array[i][j])
-#define IS_TABLE_OCCUPIED (Table[shape.row + i][shape.col + j])
+#define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j])
 #define IS_OUTSIDE_BOUNDS \
 	(									\
 		shape.col + j < 0 			|| 	\
@@ -60,7 +60,9 @@ typedef struct game_info
 	int				final_score; 
 	bool			GameOn;
 	t_game_clock	clock;
+	char			Table[ROW_MAX][COL_MAX];
 }					t_game_info;
+	// char			Table[ROW_MAX][COL_MAX] ={0};
 
 typedef struct shape
 {
@@ -77,16 +79,11 @@ typedef struct s_key_action_dictionary
 }				t_key_action_dictionary;
 
 extern const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES];
-extern char				Table[ROW_MAX][COL_MAX];
+// extern char				Table[ROW_MAX][COL_MAX];
 extern t_shape			g_current;
 
 int		main(void);
 
-// utils.c
-void	refresh_g_current(void);
-void	check_game_on_with_g_current(bool *);
-void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
-void	print_screen(int);
 void	process_tetris(t_game_info *info);
 
 void	control_key_press(const char pressed_key, t_game_info *);
@@ -94,9 +91,14 @@ void	control_key_press(const char pressed_key, t_game_info *);
 void	proceed_update_score_and_map(t_game_info *);
 
 t_shape	create_shape(void);
-int		check_shape_with_map(const t_shape);
+int	check_shape_with_map(const t_shape shape, char table[ROW_MAX][COL_MAX]);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
+
+void	refresh_g_current(void);
+void	check_game_on_with_g_current(bool *GameOn, char table[ROW_MAX][COL_MAX]);
+void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
+void	print_screen(int, char table[ROW_MAX][COL_MAX]);
 
 #endif
