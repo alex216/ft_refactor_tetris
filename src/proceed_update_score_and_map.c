@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 20:38:19 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:48:30 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 		{
 			count++;
 			_remap_table(n);
-			info->timer -= info->decrease--;
+			info->clock.interval_time -= info->clock.decrease_ms--;
 		}
 	}
 	info->final_score += 100 * count * COL_MAX;
@@ -45,5 +45,6 @@ void	proceed_update_score_and_map(t_game_info *info)
 {
 	copy_g_current_shape_to_map(&Table);
 	_count_vanish_line_then_add_score(info);
-	check_game_then_refresh_g_current(info);
+	refresh_g_current();
+	check_game_on_with_g_current(&(info->GameOn));
 }

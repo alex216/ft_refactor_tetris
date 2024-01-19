@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/08 16:12:50 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:47:04 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define LEFT_KEY 'a'
 #define RIGHT_KEY 'd'
@@ -46,14 +47,20 @@
 
 typedef int t_bool;
 
+typedef struct	s_game_clock
+{
+	suseconds_t		interval_time;
+	int				decrease_ms;
+	struct timeval	before_now;
+	struct timeval	now;
+}					t_game_clock;
+
 typedef struct game_info
 {
 	int				final_score; 
-	suseconds_t		timer;
 	bool			GameOn;
-	int				decrease;
-	struct timeval	before_now, now;
-}	t_game_info;
+	t_game_clock	clock;
+}					t_game_info;
 
 typedef struct shape
 {
@@ -75,9 +82,9 @@ extern t_shape			g_current;
 
 int		main(void);
 
+// utils.c
 void	refresh_g_current(void);
-void	check_game_on_with_g_current(t_game_info *);
-void	check_game_then_refresh_g_current(t_game_info *info);
+void	check_game_on_with_g_current(bool *);
 void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 void	print_screen(int);
 
@@ -86,7 +93,7 @@ void	control_key_press(const char pressed_key, t_game_info *);
 void	proceed_update_score_and_map(t_game_info *);
 
 t_shape	create_shape(void);
-int		check_shape_with_map(const t_shape, const t_game_info *);
+int		check_shape_with_map(const t_shape);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);

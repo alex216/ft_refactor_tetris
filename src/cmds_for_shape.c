@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 20:39:03 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:47:22 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_shape	create_shape(void)
 	return (new_shape);
 }
 
-int	check_shape_with_map(const t_shape shape, const t_game_info *info)
+int	check_shape_with_map(const t_shape shape)
 {
 	const char	**array = (const char **)shape.array;
 
