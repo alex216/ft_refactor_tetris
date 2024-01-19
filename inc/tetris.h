@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/07 20:42:08 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/08 16:12:50 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 #include <time.h>
 #include <stdbool.h>
 
+#define LEFT_KEY 'a'
+#define RIGHT_KEY 'd'
+#define ROTATE_KEY 'w'
+#define DOWN_KEY 's'
 #define COL_MAX 15
 #define ROW_MAX 20
 #define BLOCK_CHAR '#'
@@ -29,15 +33,15 @@
 #define ROTATE_CLOCKWISE true
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
-#define INTERVAL_MICROSECONDS 1000000
+#define INTERVAL_MS 1000000
 #define NUMBER_OF_TOTAL_SHAPES 7
 #define IS_CELL_OCCUPIED (array[i][j])
 #define IS_TABLE_OCCUPIED (Table[shape.row + i][shape.col + j])
 #define IS_OUTSIDE_BOUNDS \
-	(\
-		shape.col + j < 0 || \
-		shape.col + j >= COL_MAX || \
-		shape.row + i >= ROW_MAX\
+	(									\
+		shape.col + j < 0 			|| 	\
+		shape.col + j >= COL_MAX	||	\
+		shape.row + i >= ROW_MAX		\
 	)
 
 typedef int t_bool;
@@ -59,7 +63,11 @@ typedef struct shape
 	int		col;
 }			t_shape;
 
-typedef void (*switch_keypress_behaviour)(t_shape , t_game_info *);
+typedef struct s_key_action_dictionary
+{
+	const char	pressed_key;
+	void		(*key_action_function)(t_shape, t_game_info *);
+}				t_key_action_dictionary;
 
 extern const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES];
 extern char				Table[ROW_MAX][COL_MAX];
@@ -71,8 +79,9 @@ void	refresh_g_current(void);
 void	check_game_on_with_g_current(t_game_info *);
 void	check_game_then_refresh_g_current(t_game_info *info);
 void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
+void	print_screen(int);
 
-void	control_key_press(const char, t_game_info *, t_shape);
+void	control_key_press(const char pressed_key, t_game_info *);
 
 void	proceed_update_score_and_map(t_game_info *);
 
