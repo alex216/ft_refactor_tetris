@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 21:24:32 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 21:57:35 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,26 @@ void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
 			if (g_current.array[i][j])
 				(*table)[g_current.row + i][g_current.col
 					+ j] = g_current.array[i][j];
+}
+
+void	print_screen(int final_score)
+{
+	char	Buffer[ROW_MAX][COL_MAX] = {0};
+	char	*title = "42 Tetris";
+
+	copy_g_current_shape_to_map(&Buffer);
+
+	clear();
+	for (int i = 0; i < COL_MAX - strlen(title); i++)
+		printw(" ");
+	printw("%s\n", title);
+
+	for (int i = 0; i < ROW_MAX; i++)
+	{
+		for (int j = 0; j < COL_MAX; j++)
+			printw("%c ", (Table[i][j] + Buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
+		printw("\n");
+	}
+
+	printw("\nScore: %d\n", final_score);
 }
