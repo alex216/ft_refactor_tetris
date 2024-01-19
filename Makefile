@@ -6,13 +6,14 @@
 #    By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 13:37:51 by yliu              #+#    #+#              #
-#    Updated: 2024/01/07 20:40:16 by yliu             ###   ########.fr        #
+#    Updated: 2024/01/19 22:04:19 by yliu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_DIR	=	./src
 CLFAGS		=	-Wall -Wextra -Werror
 SRCS		=	main.c \
+				process_tetris.c \
 				utils.c \
 				cmds_for_shape.c \
 				control_key_press.c \

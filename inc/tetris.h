@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 21:47:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 22:36:18 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	refresh_g_current(void);
 void	check_game_on_with_g_current(bool *);
 void	copy_g_current_shape_to_map(char (*)[ROW_MAX][COL_MAX]);
 void	print_screen(int);
+void	process_tetris(t_game_info *info);
 
 void	control_key_press(const char pressed_key, t_game_info *);
 
