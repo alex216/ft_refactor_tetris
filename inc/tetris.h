@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 11:08:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 00:09:02 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_key_action_dictionary
 	void		(*key_action_function)(t_shape, t_game_info *);
 }				t_key_action_dictionary;
 
-extern const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES];
+extern const t_shape	g_structs_array[NUMBER_OF_TOTAL_SHAPES];
 
 int		main(void);
 
@@ -91,10 +91,10 @@ t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-void	refresh_current_shape(t_shape *shape);
 bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX]);
 void	set_bool_to_is_game_continue(t_shape shape, bool *GameOn, char table[ROW_MAX][COL_MAX]);
 void	copy_shape_to_map(t_shape shape, char (*table)[ROW_MAX][COL_MAX]);
 void	print_screen(t_shape shape, int final_score, char table[ROW_MAX][COL_MAX]);
+void	respawn_shape(t_shape *shape);
 
 #endif

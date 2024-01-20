@@ -6,13 +6,13 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 11:07:36 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 00:04:32 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-void	refresh_current_shape(t_shape *shape)
+void	respawn_shape(t_shape *shape)
 {
 	const t_shape	new_shape = create_shape();
 
@@ -49,12 +49,12 @@ void	copy_shape_to_map(t_shape shape, char (*table)[ROW_MAX][COL_MAX])
 void	print_screen(t_shape shape, int final_score, char table[ROW_MAX][COL_MAX])
 {
 	char	buffer[ROW_MAX][COL_MAX] = {0};
-	char	*title = "42 Tetris";
+	static char	title[10] = "42 Tetris\0";
 
-	copy_shape_to_map(shape, &buffer);
+	stick_shape_to_map(shape, &buffer);
 
 	clear();
-	for (int i = 0; i < COL_MAX - strlen(title); i++)
+	for (int i = 0; i < COL_MAX - (int)strlen(title); i++)
 		printw(" ");
 	printw("%s\n", title);
 
