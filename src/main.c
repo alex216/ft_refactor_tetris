@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 11:06:00 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 00:36:43 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 static void	_initialize_game(t_game_info *info)
 {
 	info->final_score = 0;
-	info->clock.interval_time = STARTING_TIME;
 	info->is_game_continue = true;
+	info->current_shape = create_shape();
+	info->clock.interval_time = STARTING_TIME;
 	info->clock.decrease_ms = DEFAULT_DECREASE_SPEED;
 	gettimeofday(&info->clock.before_now, NULL);
 	for (int x = 0; x < ROW_MAX; x++)
 		for (int y = 0; y < COL_MAX; y++)
-			info->Table[x][y] = 0;
+			info->map_table[x][y] = 0;
 	info->current_shape = create_shape();
 }
 
@@ -44,15 +45,15 @@ int	main(void)
 	srand(time(0));
 	initscr();
 
-	refresh_current_shape(&info.current_shape);
-	set_bool_to_is_game_continue(info.current_shape, &info.is_game_continue, info.Table);
-	print_screen(info.current_shape, info.final_score, info.Table);
+	respawn_shape(&info.current_shape);
+	print_screen(info.current_shape, info.final_score, info.map_table);
+	set_bool_to_is_game_continue(info.current_shape, &info.is_game_continue, info.map_table);
 
 	process_tetris(&info);
 
 	destruct_shape(info.current_shape);
 	endwin();
-	_display_result(info.final_score, info.Table);
+	_display_result(info.final_score, info.map_table);
 
 	return (0);
 }
