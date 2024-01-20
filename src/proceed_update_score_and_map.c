@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 10:46:59 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 11:07:20 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void _count_vanish_line_then_add_score(t_game_info *info)
 
 void	proceed_update_score_and_map(t_game_info *info)
 {
-	copy_g_current_shape_to_map(info->current_shape, &info->Table);
+	copy_shape_to_map(info->current_shape, &info->Table);
 	_count_vanish_line_then_add_score(info);
 	refresh_current_shape(&info->current_shape);
-	set_bool_to_GameOn_if_gameover(info->current_shape, &(info->is_game_continue), info->Table);
+	set_bool_to_is_game_continue(info->current_shape, &(info->is_game_continue), info->Table);
 }

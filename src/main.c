@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 10:47:07 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 11:06:00 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(void)
 	initscr();
 
 	refresh_current_shape(&info.current_shape);
-	set_bool_to_GameOn_if_gameover(info.current_shape, &info.is_game_continue, info.Table);
+	set_bool_to_is_game_continue(info.current_shape, &info.is_game_continue, info.Table);
 	print_screen(info.current_shape, info.final_score, info.Table);
 
 	process_tetris(&info);
