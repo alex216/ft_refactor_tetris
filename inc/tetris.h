@@ -6,11 +6,9 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 22:36:18 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 10:58:46 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO:	global_variables
 
 #ifndef TETRIS_H
 #define TETRIS_H
@@ -47,6 +45,14 @@
 
 typedef int t_bool;
 
+typedef struct shape
+{
+	char	**array;
+	int		width;
+	int		row;
+	int		col;
+}			t_shape;
+
 typedef struct	s_game_clock
 {
 	suseconds_t		interval_time;
@@ -58,19 +64,11 @@ typedef struct	s_game_clock
 typedef struct game_info
 {
 	int				final_score; 
-	bool			GameOn;
+	bool			is_game_continue;
 	t_game_clock	clock;
 	char			Table[ROW_MAX][COL_MAX];
+	t_shape			current_shape;
 }					t_game_info;
-	// char			Table[ROW_MAX][COL_MAX] ={0};
-
-typedef struct shape
-{
-	char	**array;
-	int		width;
-	int		row;
-	int		col;
-}			t_shape;
 
 typedef struct s_key_action_dictionary
 {
@@ -79,8 +77,6 @@ typedef struct s_key_action_dictionary
 }				t_key_action_dictionary;
 
 extern const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES];
-// extern char				Table[ROW_MAX][COL_MAX];
-extern t_shape			g_current;
 
 int		main(void);
 
@@ -91,14 +87,14 @@ void	control_key_press(const char pressed_key, t_game_info *);
 void	proceed_update_score_and_map(t_game_info *);
 
 t_shape	create_shape(void);
-int	check_shape_with_map(const t_shape shape, char table[ROW_MAX][COL_MAX]);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-void	refresh_g_current(void);
-void	check_game_on_with_g_current(bool *GameOn, char table[ROW_MAX][COL_MAX]);
-void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX]);
-void	print_screen(int, char table[ROW_MAX][COL_MAX]);
+void	refresh_current_shape(t_shape *shape);
+bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX]);
+void	set_bool_to_GameOn_if_gameover(t_shape g_current, bool *GameOn, char table[ROW_MAX][COL_MAX]);
+void	copy_g_current_shape_to_map(t_shape g_current, char (*table)[ROW_MAX][COL_MAX]);
+void	print_screen(t_shape g_current, int final_score, char table[ROW_MAX][COL_MAX]);
 
 #endif

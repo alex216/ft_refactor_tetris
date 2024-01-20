@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:28 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 22:37:29 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 10:48:44 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	_move_down(t_shape temp, t_game_info *info)
 {
 	temp.row++;
-	if (check_shape_with_map(temp, info->Table))
-		g_current.row++;
+	if (check_map_for_gamecontinue(temp, info->Table))
+		info->current_shape.row++;
 	else
 		proceed_update_score_and_map(info);
 }
@@ -24,22 +24,22 @@ static void	_move_down(t_shape temp, t_game_info *info)
 static void	_move_right(t_shape temp, t_game_info *info)
 {
     temp.col++;
-    if (check_shape_with_map(temp, info->Table))
-        g_current.col++;
+    if (check_map_for_gamecontinue(temp, info->Table))
+        info->current_shape.col++;
 }
 
 static void _move_left(t_shape temp, t_game_info *info)
 {
     temp.col--;
-    if (check_shape_with_map(temp, info->Table))
-        g_current.col--;
+    if (check_map_for_gamecontinue(temp, info->Table))
+        info->current_shape.col--;
 }
 
 static void _move_rotate(t_shape temp, t_game_info *info)
 {
     rotate_shape(temp);
-    if (check_shape_with_map(temp, info->Table))
-        rotate_shape(g_current);
+    if (check_map_for_gamecontinue(temp, info->Table))
+        rotate_shape(info->current_shape);
 }
 
 void control_key_press(const char pressed_key, t_game_info *info)
@@ -55,7 +55,7 @@ void control_key_press(const char pressed_key, t_game_info *info)
 	{
 		if (key_action[i].pressed_key == pressed_key)
 		{
-			t_shape shape_under_control = copy_shape(g_current);
+			t_shape shape_under_control = copy_shape(info->current_shape);
 			key_action[i].key_action_function(shape_under_control, info);
 			destruct_shape(shape_under_control);
 		}

@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 22:32:25 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 10:50:13 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ t_shape	create_shape(void)
 	new_shape.row = 0;
 
 	return (new_shape);
-}
-
-int	check_shape_with_map(const t_shape shape, char table[ROW_MAX][COL_MAX])
-{
-	const char	**array = (const char **)shape.array;
-
-	for (int i = 0; i < shape.width; i++)
-		for (int j = 0; j < shape.width; j++)
-			if (IS_CELL_OCCUPIED && (IS_OUTSIDE_BOUNDS || IS_TABLE_OCCUPIED))
-				return (false);
-	return (true);
 }
 
 t_shape	copy_shape(const t_shape shape)

@@ -6,13 +6,13 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:38:01 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 22:16:13 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/19 23:08:51 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-t_shape			g_current;
+// t_shape			g_current;
 const t_shape	g_StructsArray[NUMBER_OF_TOTAL_SHAPES] = {
 	{(char *[]){(char[]){0, 1, 1},
 				(char[]){1, 1, 0},

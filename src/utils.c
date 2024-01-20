@@ -6,26 +6,38 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/19 22:35:55 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/20 10:58:50 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-void	refresh_g_current(void)
+void	refresh_current_shape(t_shape *shape)
 {
 	const t_shape	new_shape = create_shape();
 
-	destruct_shape(g_current);
-	g_current = new_shape;
+	destruct_shape(*shape);
+	*shape = new_shape;
+
 }
 
-void	check_game_on_with_g_current(bool *GameOn, char table[ROW_MAX][COL_MAX])
+bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX])
 {
-		*GameOn = check_shape_with_map(g_current, table);
+	const char	**array = (const char **)shape.array;
+
+	for (int i = 0; i < shape.width; i++)
+		for (int j = 0; j < shape.width; j++)
+			if (IS_CELL_OCCUPIED && (IS_OUTSIDE_BOUNDS || IS_TABLE_OCCUPIED))
+				return (false);
+	return (true);
 }
 
-void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
+void	set_bool_to_GameOn_if_gameover(t_shape g_current, bool *is_game_over, char table[ROW_MAX][COL_MAX])
+{
+		*is_game_over = check_map_for_gamecontinue(g_current, table);
+}
+
+void	copy_g_current_shape_to_map(t_shape g_current, char (*table)[ROW_MAX][COL_MAX])
 {
 	for (int i = 0; i < g_current.width; i++)
 		for (int j = 0; j < g_current.width; j++)
@@ -34,12 +46,12 @@ void	copy_g_current_shape_to_map(char (*table)[ROW_MAX][COL_MAX])
 					+ j] = g_current.array[i][j];
 }
 
-void	print_screen(int final_score, char table[ROW_MAX][COL_MAX])
+void	print_screen(t_shape g_current, int final_score, char table[ROW_MAX][COL_MAX])
 {
 	char	buffer[ROW_MAX][COL_MAX] = {0};
 	char	*title = "42 Tetris";
 
-	copy_g_current_shape_to_map(&buffer);
+	copy_g_current_shape_to_map(g_current, &buffer);
 
 	clear();
 	for (int i = 0; i < COL_MAX - strlen(title); i++)
