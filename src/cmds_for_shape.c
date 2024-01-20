@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/20 10:50:13 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 00:35:47 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_shape	create_shape(void)
 {
-	t_shape new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
+	t_shape new_shape = copy_shape(g_structs_array[rand() % NUMBER_OF_TOTAL_SHAPES]);
 
 	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 	new_shape.row = 0;
@@ -27,7 +27,7 @@ t_shape	copy_shape(const t_shape shape)
 	t_shape	new_shape = shape;
 	new_shape.array = (char **)calloc(shape.width , sizeof(char *));
 	if (!new_shape.array)
-		exit(1);
+		exit(EXIT_FAILURE);
 
 	for (int i = 0; i < shape.width; i++)
 	{
@@ -35,7 +35,7 @@ t_shape	copy_shape(const t_shape shape)
 		if (!new_shape.array[i])
 		{
 			destruct_shape(new_shape);
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		for (int j = 0; j < shape.width; j++)
 			new_shape.array[i][j] = shape.array[i][j];
