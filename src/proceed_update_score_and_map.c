@@ -12,13 +12,24 @@
 
 #include "tetris.h"
 
-static void	_remap_table(const int max_row, char table[ROW_MAX][COL_MAX])
+static void	_remap_table_above_y(const int max_row, char table[ROW_MAX][COL_MAX][2])
 {
 	for (int i = max_row; i >= 1; i--)
+	{
 		for (int j = 0; j < COL_MAX; j++)
-			table[i][j] = table[i - 1][j];
+		{
+			table[i][j][0] = table[i - 1][j][0];
+			if (table[i - 1][j][0])
+				table[i][j][1] = table[i - 1][j][1];
+			else
+				table[i][j][1] = 0;
+		}
+	}
 	for (int j = 0; j < COL_MAX; j++)
-		table[0][j] = 0;
+	{
+		table[0][j][0] = 0;
+		table[0][j][1] = 0;
+	}
 }
 
 static	bool	_check_a_line_is_filled(char table[COL_MAX][2])

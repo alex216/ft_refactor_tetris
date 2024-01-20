@@ -14,8 +14,10 @@
 
 t_shape	create_shape(void)
 {
-	t_shape new_shape = copy_shape(g_StructsArray[rand() % NUMBER_OF_TOTAL_SHAPES]);
+	int	shape_number = rand() % NUMBER_OF_TOTAL_SHAPES;
+	t_shape new_shape = copy_shape(g_structs_array[shape_number]);
 
+	new_shape.number = shape_number;
 	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
 	new_shape.row = 0;
 

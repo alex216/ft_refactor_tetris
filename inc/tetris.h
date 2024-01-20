@@ -35,7 +35,7 @@
 #define INTERVAL_MS 1000000
 #define NUMBER_OF_TOTAL_SHAPES 7
 #define IS_CELL_OCCUPIED (array[i][j])
-#define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j])
+#define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j][0])
 #define IS_OUTSIDE_BOUNDS \
 	(									\
 		shape.col + j < 0 			|| 	\
@@ -51,6 +51,7 @@ typedef struct shape
 	int		width;
 	int		row;
 	int		col;
+	int		number;
 }			t_shape;
 
 typedef struct	s_game_clock
@@ -66,8 +67,9 @@ typedef struct game_info
 	int				final_score; 
 	bool			is_game_continue;
 	t_game_clock	clock;
-	char			Table[ROW_MAX][COL_MAX];
+	char			map_table[ROW_MAX][COL_MAX][2];
 	t_shape			current_shape;
+	bool			is_color;
 }					t_game_info;
 
 typedef struct s_key_action_dictionary
@@ -78,7 +80,7 @@ typedef struct s_key_action_dictionary
 
 extern const t_shape	g_structs_array[NUMBER_OF_TOTAL_SHAPES];
 
-int		main(void);
+int		main(int argc, char **argv);
 
 void	process_tetris(t_game_info *info);
 
@@ -91,10 +93,10 @@ t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX]);
-void	set_bool_to_is_game_continue(t_shape shape, bool *GameOn, char table[ROW_MAX][COL_MAX]);
-void	copy_shape_to_map(t_shape shape, char (*table)[ROW_MAX][COL_MAX]);
-void	print_screen(t_shape shape, int final_score, char table[ROW_MAX][COL_MAX]);
 void	respawn_shape(t_shape *shape);
+bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX][2]);
+void	set_bool_to_is_game_continue(t_shape shape, bool *GameOn, char table[ROW_MAX][COL_MAX][2]);
+void	stick_shape_to_map(t_shape shape, char (*table)[ROW_MAX][COL_MAX][2]);
+void	print_screen(bool color, t_shape shape, int final_score, char table[ROW_MAX][COL_MAX][2]);
 
 #endif
