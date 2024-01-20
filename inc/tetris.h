@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/21 00:34:20 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 01:05:49 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define COL_MAX 15
+#define ROW_MAX 20
 #define LEFT_KEY 'a'
 #define RIGHT_KEY 'd'
 #define ROTATE_KEY 'w'
 #define DOWN_KEY 's'
-#define COL_MAX 15
-#define ROW_MAX 20
 #define BLOCK_CHAR '#'
 #define BLANK_CHAR '.'
 #define ROTATE_CLOCKWISE true
@@ -80,21 +80,21 @@ extern const t_shape	g_structs_array[NUMBER_OF_TOTAL_SHAPES];
 
 int		main(void);
 
-void	process_tetris(t_game_info *info);
+void	process_tetris(t_game_info *);
 
 void	control_key_press(const char pressed_key, t_game_info *);
 
-void	proceed_update_score_and_map(t_game_info *);
+void	proceed_update_score_and_map(t_game_info *const);
 
 t_shape	create_shape(void);
 t_shape	copy_shape(const t_shape);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-bool	check_map_for_gamecontinue(const t_shape shape, char table[ROW_MAX][COL_MAX]);
-void	set_bool_to_is_game_continue(t_shape shape, bool *GameOn, char table[ROW_MAX][COL_MAX]);
-void	stick_shape_to_map(t_shape shape, char (*table)[ROW_MAX][COL_MAX]);
-void	print_screen(t_shape shape, int final_score, char table[ROW_MAX][COL_MAX]);
-void	respawn_shape(t_shape *shape);
+bool	check_map_for_gamecontinue(const t_shape, const char table[ROW_MAX][COL_MAX]);
+void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char table[ROW_MAX][COL_MAX]);
+void	stick_shape_to_map(const t_shape, char (*const table)[ROW_MAX][COL_MAX]);
+void	print_screen(const t_shape, const int final_score, const char table[ROW_MAX][COL_MAX]);
+void	respawn_shape(t_shape *);
 
 #endif

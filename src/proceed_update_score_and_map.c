@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/21 00:32:47 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/21 01:03:47 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	_remap_table_above_y(const int max_row, char table[ROW_MAX][COL_MAX]
 		table[0][j] = 0;
 }
 
-static	bool	_check_a_line_is_filled(char table[COL_MAX])
+static	bool	_check_a_line_is_filled(const char table[COL_MAX])
 {
 	int	sum = 0;
 
@@ -30,13 +30,13 @@ static	bool	_check_a_line_is_filled(char table[COL_MAX])
 	return (sum == COL_MAX);
 }
 
-static void	_revise_game_info(t_game_clock *clock, int *final_score)
+static void	_revise_game_info(t_game_clock *const clock, int *const final_score)
 {
 	clock->interval_time -= clock->decrease_ms--;
 	*final_score += 100 * COL_MAX;
 }
 
-static void _proceed_remap_and_revise_info(t_game_info *info)
+static void _proceed_remap_and_revise_info(t_game_info *const info)
 {
 	for (int y = 0; y < ROW_MAX; y++)
 	{
@@ -48,10 +48,10 @@ static void _proceed_remap_and_revise_info(t_game_info *info)
 	}
 }
 
-void	proceed_update_score_and_map(t_game_info *info)
+void	proceed_update_score_and_map(t_game_info *const info)
 {
 	stick_shape_to_map(info->current_shape, &info->map_table);
 	_proceed_remap_and_revise_info(info);
 	respawn_shape(&info->current_shape);
-	set_bool_to_is_game_continue(info->current_shape, &(info->is_game_continue), info->map_table);
+	set_to_is_game_continue(info->current_shape, &(info->is_game_continue), info->map_table);
 }
