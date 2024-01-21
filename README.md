@@ -3,6 +3,14 @@
 * play demo
 
 ![](https://github.com/alex216/ft_refactor_tetris/blob/main/etc/output.gif)
+
+* color mode
+```bash
+git checkout with_color
+make re && ./tetris -c
+```
+
+![](https://github.com/alex216/ft_refactor_tetris/blob/main/etc/output_w_color.gif)
  
 # Features
 * just plain good old tetris.
