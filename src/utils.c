@@ -6,20 +6,11 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/21 01:00:57 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 13:20:49 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
-
-void	respawn_shape(t_shape *shape)
-{
-	const t_shape	new_shape = create_shape();
-
-	destruct_shape(*shape);
-	*shape = new_shape;
-
-}
 
 bool	check_map_for_gamecontinue(
 									const t_shape shape,

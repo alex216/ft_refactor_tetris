@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 13:06:44 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 13:21:52 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void	control_key_press(const char pressed_key, t_game_info *);
 
 void	proceed_update_score_and_map(t_game_info *const);
 
-t_shape	create_shape(void);
 t_shape	copy_shape(const t_shape);
+t_shape	create_shape(void);
+void	respawn_shape(t_shape *);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
@@ -95,6 +96,5 @@ bool	check_map_for_gamecontinue(const t_shape, const char table[ROW_MAX][COL_MAX
 void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char table[ROW_MAX][COL_MAX]);
 void	stick_shape_to_map(const t_shape, char (*const table)[ROW_MAX][COL_MAX]);
 void	print_screen(const t_shape, const int final_score, const char table[ROW_MAX][COL_MAX]);
-void	respawn_shape(t_shape *);
 
 #endif
