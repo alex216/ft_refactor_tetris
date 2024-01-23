@@ -6,20 +6,11 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 14:44:33 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:46:46 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
-
-static void	_remap_table_above_y(const int max_row, char table[ROW][COL])
-{
-	for (int i = max_row; i >= 1; i--)
-		for (int j = 0; j < COL; j++)
-			table[i][j] = table[i - 1][j];
-	for (int j = 0; j < COL; j++)
-		table[0][j] = 0;
-}
 
 static	bool	_check_a_line_is_filled(const char table[COL])
 {
@@ -28,6 +19,15 @@ static	bool	_check_a_line_is_filled(const char table[COL])
 	for (int x = 0; x < COL; x++)
 			sum += table[x];
 	return (sum == COL);
+}
+
+static void	_remap_table_above_y(const int max_row, char table[ROW][COL])
+{
+	for (int i = max_row; i >= 1; i--)
+		for (int j = 0; j < COL; j++)
+			table[i][j] = table[i - 1][j];
+	for (int j = 0; j < COL; j++)
+		table[0][j] = 0;
 }
 
 static void	_revise_game_info(t_game_clock *const clock, int *const score)
