@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:15:12 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 16:41:24 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_game_clock
 typedef struct game_info
 {
 	int score;
-	bool is_game_continuable;
+	bool is_game_end;
 	t_game_clock clock;
 	char map_table[ROW][COL];
 	t_block current_block;
@@ -92,7 +92,7 @@ void rotate_block(const t_block);
 void destruct_block(const t_block);
 
 bool check_map_for_gamecontinue(const t_block, const char map[ROW][COL]);
-void set_to_is_game_continuable(const t_block, bool *const is_game_continuable, const char map[ROW][COL]);
+void set_is_game_end(const t_block, bool *const is_game_end, const char map[ROW][COL]);
 void stick_block_to_map(const t_block, char (*const map)[ROW][COL]);
 void print_screen(const t_block, const int score, const char map[ROW][COL]);
 

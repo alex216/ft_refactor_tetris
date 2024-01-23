@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:15:12 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 16:42:00 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	_initialize_game(t_game_info *info)
 {
 	info->score = 0;
-	info->is_game_continuable = true;
+	info->is_game_end = false;
 	info->current_block = create_block();
 	info->clock.interval_time = STARTING_TIME;
-	info->clock.decrease_ms = DEFAULT_DECREASE_SPEED;
+	info->clock.decrease_ms= DEFAULT_DECREASE_SPEED;
 	gettimeofday(&info->clock.before_now, NULL);
 	for (int x = 0; x < ROW; x++)
 		for (int y = 0; y < COL; y++)
@@ -49,7 +49,7 @@ int	main(void)
 
 	respawn_block(&info.current_block);
 	print_screen(info.current_block, info.score, info.map_table);
-	set_to_is_game_continuable(info.current_block, &info.is_game_continuable, info.map_table);
+	set_is_game_end(info.current_block, &info.is_game_end, info.map_table);
 
 	process_tetris(&info);
 
