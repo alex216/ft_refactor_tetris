@@ -6,13 +6,13 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:38:01 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 17:00:18 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-const t_block	g_structs_array[NUMBER_OF_blockS] = {
+const t_block	g_structs_array[NUMBER_OF_BLOCKS] = {
 	{(char *[]){(char[]){0, 1, 1},
 				(char[]){1, 1, 0},
 				(char[]){0, 0, 0}}, 3

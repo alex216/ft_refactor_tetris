@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmds_for_shape.c                                   :+:      :+:    :+:   */
+/*   cmds_for_block.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 17:00:30 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_block	copy_block(const t_block block)
 
 t_block	create_block(void)
 {
-	t_block new_block = copy_block(g_structs_array[rand() % NUMBER_OF_blockS]);
+	t_block new_block = copy_block(g_structs_array[rand() % NUMBER_OF_BLOCKS]);
 
 	new_block.col = rand() % (COL - new_block.width + 1);
 	new_block.row = 0;

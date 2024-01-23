@@ -6,15 +6,15 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:58:05 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 17:02:13 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
 bool	check_map_for_continue(
-									const t_block block,
-									const char map[ROW][COL])
+								const t_block block,
+								const char map[ROW][COL])
 {
 	const char	**array = (const char **)block.array;
 
@@ -27,9 +27,9 @@ bool	check_map_for_continue(
 }
 
 void	set_is_game_end(
-								const t_block block,
-								bool *is_game_end,
-								const char map[ROW][COL])
+						const t_block block,
+						bool *is_game_end,
+						const char map[ROW][COL])
 {
 		*is_game_end = !check_map_for_continue(block, map);
 }
