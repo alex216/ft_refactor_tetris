@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:37 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 13:21:34 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:04:25 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_shape	create_shape(void)
 {
 	t_shape new_shape = copy_shape(g_structs_array[rand() % NUMBER_OF_SHAPES]);
 
-	new_shape.col = rand() % (COL_MAX - new_shape.width + 1);
+	new_shape.col = rand() % (COL - new_shape.width + 1);
 	new_shape.row = 0;
 
 	return (new_shape);

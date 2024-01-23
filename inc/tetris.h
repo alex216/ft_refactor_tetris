@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 13:21:52 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:13:18 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define COL_MAX 15
-#define ROW_MAX 20
+#define COL 15
+#define ROW 20
 #define LEFT_KEY 'a'
 #define RIGHT_KEY 'd'
 #define ROTATE_KEY 'w'
@@ -37,10 +37,10 @@
 #define IS_CELL_OCCUPIED (array[i][j])
 #define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j])
 #define IS_OUTSIDE_BOUNDS \
-	(									\
-		shape.col + j < 0 			|| 	\
-		shape.col + j >= COL_MAX	||	\
-		shape.row + i >= ROW_MAX		\
+	(								\
+		shape.col + j < 0 		|| 	\
+		shape.col + j >= COL	||	\
+		shape.row + i >= ROW		\
 	)
 
 typedef int t_bool;
@@ -66,7 +66,7 @@ typedef struct game_info
 	int				final_score; 
 	bool			is_game_continue;
 	t_game_clock	clock;
-	char			map_table[ROW_MAX][COL_MAX];
+	char			map_table[ROW][COL];
 	t_shape			current_shape;
 }					t_game_info;
 
@@ -92,9 +92,9 @@ void	respawn_shape(t_shape *);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-bool	check_map_for_gamecontinue(const t_shape, const char table[ROW_MAX][COL_MAX]);
-void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char table[ROW_MAX][COL_MAX]);
-void	stick_shape_to_map(const t_shape, char (*const table)[ROW_MAX][COL_MAX]);
-void	print_screen(const t_shape, const int final_score, const char table[ROW_MAX][COL_MAX]);
+bool	check_map_for_gamecontinue(const t_shape, const char table[ROW][COL]);
+void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char table[ROW][COL]);
+void	stick_shape_to_map(const t_shape, char (*const table)[ROW][COL]);
+void	print_screen(const t_shape, const int final_score, const char table[ROW][COL]);
 
 #endif

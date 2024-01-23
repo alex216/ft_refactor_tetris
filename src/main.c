@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/21 01:01:19 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:12:04 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static void	_initialize_game(t_game_info *info)
 	info->clock.interval_time = STARTING_TIME;
 	info->clock.decrease_ms = DEFAULT_DECREASE_SPEED;
 	gettimeofday(&info->clock.before_now, NULL);
-	for (int x = 0; x < ROW_MAX; x++)
-		for (int y = 0; y < COL_MAX; y++)
+	for (int x = 0; x < ROW; x++)
+		for (int y = 0; y < COL; y++)
 			info->map_table[x][y] = 0;
 	info->current_shape = create_shape();
 }
 
 static void	_display_result(
 							const int final_score,
-							const char (table)[ROW_MAX][COL_MAX])
+							const char (table)[ROW][COL])
 {
-	for (int x = 0; x < ROW_MAX; x++)
+	for (int x = 0; x < ROW; x++)
 	{
-		for (int y = 0; y < COL_MAX; y++)
+		for (int y = 0; y < COL; y++)
 			printf("%c ", table[x][y] ? BLOCK_CHAR : BLANK_CHAR);
 		printf("\n");
 	}
