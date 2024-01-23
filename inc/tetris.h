@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/21 01:05:49 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 13:06:44 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
 #define INTERVAL_MS 1000000
-#define NUMBER_OF_TOTAL_SHAPES 7
+#define NUMBER_OF_SHAPES 7
 #define IS_CELL_OCCUPIED (array[i][j])
 #define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j])
 #define IS_OUTSIDE_BOUNDS \
@@ -76,7 +76,7 @@ typedef struct s_key_action_dictionary
 	void		(*key_action_function)(t_shape, t_game_info *);
 }				t_key_action_dictionary;
 
-extern const t_shape	g_structs_array[NUMBER_OF_TOTAL_SHAPES];
+extern const t_shape	g_structs_array[NUMBER_OF_SHAPES];
 
 int		main(void);
 
