@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 15:05:28 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 #define INTERVAL_MS 1000000
 #define NUMBER_OF_blockS 7
 #define IS_CELL_OCCUPIED (array[i][j])
-#define IS_TABLE_OCCUPIED (table[block.row + i][block.col + j])
+#define IS_TABLE_OCCUPIED (map[block.row + i][block.col + j])
 #define IS_OUTSIDE_BOUNDS \
 	(								\
 		block.col + j < 0 		|| 	\

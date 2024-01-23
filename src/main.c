@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 15:06:36 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static void	_initialize_game(t_game_info *info)
 
 static void	_display_result(
 							const int score,
-							const char (table)[ROW][COL])
+							const char (map)[ROW][COL])
 {
 	for (int x = 0; x < ROW; x++)
 	{
 		for (int y = 0; y < COL; y++)
-			printf("%c ", table[x][y] ? BLOCK_CHAR : BLANK_CHAR);
+			printf("%c ", map[x][y] ? BLOCK_CHAR : BLANK_CHAR);
 		printf("\n");
 	}
 	printf("\nGame over!\n\nScore: %d\n", score);
