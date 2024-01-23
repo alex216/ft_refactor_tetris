@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 14:45:04 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,25 @@
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
 #define INTERVAL_MS 1000000
-#define NUMBER_OF_SHAPES 7
+#define NUMBER_OF_blockS 7
 #define IS_CELL_OCCUPIED (array[i][j])
-#define IS_TABLE_OCCUPIED (table[shape.row + i][shape.col + j])
+#define IS_TABLE_OCCUPIED (table[block.row + i][block.col + j])
 #define IS_OUTSIDE_BOUNDS \
 	(								\
-		shape.col + j < 0 		|| 	\
-		shape.col + j >= COL	||	\
-		shape.row + i >= ROW		\
+		block.col + j < 0 		|| 	\
+		block.col + j >= COL	||	\
+		block.row + i >= ROW		\
 	)
 
 typedef int t_bool;
 
-typedef struct shape
+typedef struct block
 {
 	char	**array;
 	int		width;
 	int		row;
 	int		col;
-}			t_shape;
+}			t_block;
 
 typedef struct	s_game_clock
 {
@@ -67,16 +67,16 @@ typedef struct game_info
 	bool			is_game_continue;
 	t_game_clock	clock;
 	char			map_table[ROW][COL];
-	t_shape			current_shape;
+	t_block			current_block;
 }					t_game_info;
 
 typedef struct s_key_action_dictionary
 {
 	const char	pressed_key;
-	void		(*key_action_function)(t_shape, t_game_info *);
+	void		(*key_action_function)(t_block, t_game_info *);
 }				t_key_action_dictionary;
 
-extern const t_shape	g_structs_array[NUMBER_OF_SHAPES];
+extern const t_block	g_structs_array[NUMBER_OF_blockS];
 
 int		main(void);
 
@@ -86,15 +86,15 @@ void	control_key_press(const char pressed_key, t_game_info *);
 
 void	proceed_update_score_and_map(t_game_info *const);
 
-t_shape	copy_shape(const t_shape);
-t_shape	create_shape(void);
-void	respawn_shape(t_shape *);
-void	rotate_shape(const t_shape);
-void	destruct_shape(const t_shape);
+t_block	copy_block(const t_block);
+t_block	create_block(void);
+void	respawn_block(t_block *);
+void	rotate_block(const t_block);
+void	destruct_block(const t_block);
 
-bool	check_map_for_gamecontinue(const t_shape, const char map[ROW][COL]);
-void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char map[ROW][COL]);
-void	stick_shape_to_map(const t_shape, char (*const map)[ROW][COL]);
-void	print_screen(const t_shape, const int score, const char map[ROW][COL]);
+bool	check_map_for_gamecontinue(const t_block, const char map[ROW][COL]);
+void	set_to_is_game_continue(const t_block, bool *const is_game_continue, const char map[ROW][COL]);
+void	stick_block_to_map(const t_block, char (*const map)[ROW][COL]);
+void	print_screen(const t_block, const int score, const char map[ROW][COL]);
 
 #endif

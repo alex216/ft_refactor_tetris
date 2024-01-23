@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proceed_update_score_and_map.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 14:46:46 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 15:01:49 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void _proceed_remap_and_revise_info(t_game_info *const info)
 
 void	proceed_update_score_and_map(t_game_info *const info)
 {
-	stick_shape_to_map(info->current_shape, &info->map_table);
+	stick_block_to_map(info->current_block, &info->map_table);
 	_proceed_remap_and_revise_info(info);
-	respawn_shape(&info->current_shape);
-	set_to_is_game_continue(info->current_shape, &(info->is_game_continue), info->map_table);
+	respawn_block(&info->current_block);
+	set_to_is_game_continue(info->current_block, &(info->is_game_continue), info->map_table);
 }
