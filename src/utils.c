@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 14:12:06 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:44:35 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	stick_shape_to_map(
 
 void	print_screen(
 					const t_shape shape,
-					const int final_score,
+					const int score,
 					const char table[ROW][COL])
 {
 	char	buffer[ROW][COL] = {0};
@@ -66,5 +66,5 @@ void	print_screen(
 		printw("\n");
 	}
 
-	printw("\nScore: %d\n", final_score);
+	printw("\nScore: %d\n", score);
 }

@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 14:13:18 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 14:45:04 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct	s_game_clock
 
 typedef struct game_info
 {
-	int				final_score; 
+	int				score; 
 	bool			is_game_continue;
 	t_game_clock	clock;
 	char			map_table[ROW][COL];
@@ -92,9 +92,9 @@ void	respawn_shape(t_shape *);
 void	rotate_shape(const t_shape);
 void	destruct_shape(const t_shape);
 
-bool	check_map_for_gamecontinue(const t_shape, const char table[ROW][COL]);
-void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char table[ROW][COL]);
-void	stick_shape_to_map(const t_shape, char (*const table)[ROW][COL]);
-void	print_screen(const t_shape, const int final_score, const char table[ROW][COL]);
+bool	check_map_for_gamecontinue(const t_shape, const char map[ROW][COL]);
+void	set_to_is_game_continue(const t_shape, bool *const GameOn,const char map[ROW][COL]);
+void	stick_shape_to_map(const t_shape, char (*const map)[ROW][COL]);
+void	print_screen(const t_shape, const int score, const char map[ROW][COL]);
 
 #endif
