@@ -6,13 +6,13 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:48:47 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 16:58:05 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
 
-bool	check_map_for_gamecontinue(
+bool	check_map_for_continue(
 									const t_block block,
 									const char map[ROW][COL])
 {
@@ -31,7 +31,7 @@ void	set_is_game_end(
 								bool *is_game_end,
 								const char map[ROW][COL])
 {
-		*is_game_end = !check_map_for_gamecontinue(block, map);
+		*is_game_end = !check_map_for_continue(block, map);
 }
 
 void	stick_block_to_map(
@@ -53,7 +53,6 @@ void	print_screen(
 	static char	title[10] = "42 Tetris\0";
 
 	stick_block_to_map(block, &buffer);
-
 	clear();
 	for (int i = 0; i < COL - (int)strlen(title); i++)
 		printw(" ");
