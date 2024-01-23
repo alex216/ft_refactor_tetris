@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:41:24 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 16:48:52 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void rotate_block(const t_block);
 void destruct_block(const t_block);
 
 bool check_map_for_gamecontinue(const t_block, const char map[ROW][COL]);
-void set_is_game_end(const t_block, bool *const is_game_end, const char map[ROW][COL]);
-void stick_block_to_map(const t_block, char (*const map)[ROW][COL]);
+void set_is_game_end(const t_block, bool *is_game_end, const char map[ROW][COL]);
+void stick_block_to_map(const t_block, char (*map)[ROW][COL]);
 void print_screen(const t_block, const int score, const char map[ROW][COL]);
 
 #endif

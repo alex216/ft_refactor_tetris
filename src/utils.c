@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:44:57 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/23 16:48:47 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_map_for_gamecontinue(
 
 void	set_is_game_end(
 								const t_block block,
-								bool *const is_game_end,
+								bool *is_game_end,
 								const char map[ROW][COL])
 {
 		*is_game_end = !check_map_for_gamecontinue(block, map);
@@ -36,7 +36,7 @@ void	set_is_game_end(
 
 void	stick_block_to_map(
 							const t_block block,
-							char (*const map)[ROW][COL])
+							char (*map)[ROW][COL])
 {
 	for (int i = 0; i < block.width; i++)
 		for (int j = 0; j < block.width; j++)
