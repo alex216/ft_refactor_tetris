@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 17:00:38 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/27 13:56:19 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
 #define INTERVAL_MS 1000000
-#define NUMBER_OF_BLOCKS 7
+#define TYPES_OF_BLOCKS 7
 #define IS_CELL_OCCUPIED (array[i][j])
 #define IS_TABLE_OCCUPIED (map[block.row + i][block.col + j])
 #define IS_OUTSIDE_BOUNDS			\
@@ -75,7 +75,7 @@ typedef struct s_key_action_dictionary
 	void (*key_action_function)(t_block, t_game_info *);
 } t_key_action_dictionary;
 
-extern const t_block g_structs_array[NUMBER_OF_BLOCKS];
+extern const t_block g_structs_array[TYPES_OF_BLOCKS];
 
 int	main(void);
 
