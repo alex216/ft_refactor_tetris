@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:42:00 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/27 14:00:48 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	_initialize_game(t_game_info *info)
 {
 	info->score = 0;
 	info->is_game_end = false;
-	info->current_block = create_block();
 	info->clock.interval_time = STARTING_TIME;
 	info->clock.decrease_ms= DEFAULT_DECREASE_SPEED;
 	gettimeofday(&info->clock.before_now, NULL);
@@ -47,7 +46,6 @@ int	main(void)
 	srand(time(0));
 	initscr();
 
-	respawn_block(&info.current_block);
 	print_screen(info.current_block, info.score, info.map_table);
 	set_is_game_end(info.current_block, &info.is_game_end, info.map_table);
 
