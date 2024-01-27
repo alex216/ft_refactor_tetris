@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/27 13:56:19 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/27 13:58:06 by kaksano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 typedef int t_bool;
 
-typedef struct block
+typedef struct s_block
 {
 	char **array;
 	int width;
@@ -60,7 +60,7 @@ typedef struct s_game_clock
 	struct timeval now;
 } t_game_clock;
 
-typedef struct game_info
+typedef struct s_game_info
 {
 	int score;
 	bool is_game_end;
