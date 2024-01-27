@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 17:00:38 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/27 13:43:14 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@
 #define STARTING_TIME 400000
 #define INTERVAL_MS 1000000
 #define NUMBER_OF_BLOCKS 7
-#define IS_CELL_OCCUPIED (array[i][j])
-#define IS_TABLE_OCCUPIED (map[block.row + i][block.col + j])
-#define IS_OUTSIDE_BOUNDS			\
-	(								\
-		block.col + j < 0		||	\
-		block.col + j >= COL	||	\
-		block.row + i >= ROW)
 
 typedef int t_bool;
 

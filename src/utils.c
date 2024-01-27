@@ -6,11 +6,16 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 17:02:13 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/27 14:01:29 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris.h"
+
+bool	static _is_outside_of_border(const t_block block, int i, int j)
+{
+	return (block.col + j < 0 || block.col + j >= COL || block.row + i >= ROW);
+}
 
 bool	check_map_for_continue(
 								const t_block block,
@@ -20,8 +25,8 @@ bool	check_map_for_continue(
 
 	for (int i = 0; i < block.width; i++)
 		for (int j = 0; j < block.width; j++)
-			if (IS_CELL_OCCUPIED && (IS_OUTSIDE_BOUNDS
-				|| IS_TABLE_OCCUPIED))
+			if (array[i][j] &&
+				(_is_outside_of_border(block , i , j)|| map[block.row + i][block.col + j]))
 				return (false);
 	return (true);
 }
