@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/27 14:01:29 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/27 14:28:30 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ bool	check_map_for_continue(
 
 	for (int i = 0; i < block.width; i++)
 		for (int j = 0; j < block.width; j++)
-			if (array[i][j] &&
-				(_is_outside_of_border(block , i , j)|| map[block.row + i][block.col + j]))
+			if (array[i][j]
+				&& (_is_outside_of_border(block , i , j) 
+					|| map[block.row + i][block.col + j]))
 				return (false);
 	return (true);
 }
@@ -66,7 +67,7 @@ void	print_screen(
 	for (int i = 0; i < ROW; i++)
 	{
 		for (int j = 0; j < COL; j++)
-			printw("%c ", (map[i][j] + buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
+			printw("%c ", (map[i][j] || buffer[i][j]) ? BLOCK_CHAR : BLANK_CHAR);
 		printw("\n");
 	}
 
