@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/29 10:07:02 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:26:36 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(void)
 {
 	t_game_info info;
 
-	_initialize_game(&info);
 	srand(time(0));
+	_initialize_game(&info);
 	initscr();
 
 	print_screen(info.current_block, info.score, info.map_table);

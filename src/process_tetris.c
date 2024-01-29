@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:02:08 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/29 10:02:45 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:27:21 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ void	process_tetris(t_game_info *info)
 		if ((pressed_key = getch()) != ERR)
 		{
 			control_key_press(pressed_key, info);
-			print_screen(info->current_block, info->score, info->map_table);
 		}
 		gettimeofday(&(info->clock.now), NULL);
 		if (_check_if_has_to_update(info->clock))
 		{
-			control_key_press(DOWN_KEY, info);
-			print_screen(info->current_block, info->score, info->map_table);
 			gettimeofday(&(info->clock.before_now), NULL);
+			control_key_press(DOWN_KEY, info);
 		}
+		print_screen(info->current_block, info->score, info->map_table);
 	}
 }
