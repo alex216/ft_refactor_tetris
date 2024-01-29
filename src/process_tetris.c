@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 22:02:08 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 17:03:58 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:02:45 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	process_tetris(t_game_info *info)
 	// set the length of time getch() waits for input
 	timeout(1);
 
-	while (!info->is_game_end)
+	while (info->is_game_continue)
 	{
 		if ((pressed_key = getch()) != ERR)
 		{

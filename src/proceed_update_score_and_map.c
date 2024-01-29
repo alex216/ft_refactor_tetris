@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:24 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/23 16:43:54 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:07:06 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void	proceed_update_score_and_map(t_game_info *const info)
 	stick_block_to_map(info->current_block, &info->map_table);
 	_proceed_remap_and_revise_info(info);
 	respawn_block(&info->current_block);
-	set_is_game_end(info->current_block, &info->is_game_end, info->map_table);
+	set_is_game_continue(info->current_block, &info->is_game_continue, info->map_table);
 }

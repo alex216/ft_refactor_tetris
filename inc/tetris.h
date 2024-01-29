@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:18 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/27 14:04:17 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:11:10 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 #define DEFAULT_DECREASE_SPEED 1000
 #define STARTING_TIME 400000
 #define INTERVAL_MS 1000000
-#define NUMBER_OF_BLOCKS 7
 #define TYPES_OF_BLOCKS 7
 
 typedef int t_bool;
@@ -57,7 +56,7 @@ typedef struct s_game_clock
 typedef struct s_game_info
 {
 	int score;
-	bool is_game_end;
+	bool is_game_continue;
 	t_game_clock clock;
 	char map_table[ROW][COL];
 	t_block current_block;
@@ -69,7 +68,7 @@ typedef struct s_key_action_dictionary
 	void (*key_action_function)(t_block, t_game_info *);
 } t_key_action_dictionary;
 
-extern const t_block g_structs_array[TYPES_OF_BLOCKS];
+extern const t_block g_block_array[TYPES_OF_BLOCKS];
 
 int	main(void);
 
@@ -86,7 +85,7 @@ void	rotate_block(const t_block);
 void	destruct_block(const t_block);
 
 bool	check_map_for_continue(const t_block, const char map[ROW][COL]);
-void	set_is_game_end(const t_block, bool *is_game_end, const char map[ROW][COL]);
+void	set_is_game_continue(const t_block, bool *is_game_continue, const char map[ROW][COL]);
 void	stick_block_to_map(const t_block, char (*map)[ROW][COL]);
 void	print_screen(const t_block, const int score, const char map[ROW][COL]);
 

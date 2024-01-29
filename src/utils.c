@@ -6,7 +6,7 @@
 /*   By: yliu <yliu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:41 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/27 14:28:30 by yliu             ###   ########.fr       */
+/*   Updated: 2024/01/29 10:11:16 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ bool	check_map_for_continue(
 	return (true);
 }
 
-void	set_is_game_end(
+void	set_is_game_continue(
 						const t_block block,
-						bool *is_game_end,
+						bool *is_game_continue,
 						const char map[ROW][COL])
 {
-		*is_game_end = !check_map_for_continue(block, map);
+		*is_game_continue = check_map_for_continue(block, map);
 }
 
 void	stick_block_to_map(

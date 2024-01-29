@@ -6,7 +6,7 @@
 /*   By: kaksano <kaksano@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:37:33 by yliu              #+#    #+#             */
-/*   Updated: 2024/01/27 14:00:48 by kaksano          ###   ########.fr       */
+/*   Updated: 2024/01/29 10:07:02 by yliu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	_initialize_game(t_game_info *info)
 {
 	info->score = 0;
-	info->is_game_end = false;
+	info->is_game_continue = true;
 	info->clock.interval_time = STARTING_TIME;
 	info->clock.decrease_ms= DEFAULT_DECREASE_SPEED;
 	gettimeofday(&info->clock.before_now, NULL);
@@ -47,7 +47,7 @@ int	main(void)
 	initscr();
 
 	print_screen(info.current_block, info.score, info.map_table);
-	set_is_game_end(info.current_block, &info.is_game_end, info.map_table);
+	set_is_game_continue(info.current_block, &info.is_game_continue, info.map_table);
 
 	process_tetris(&info);
 
