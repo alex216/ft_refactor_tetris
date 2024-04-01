@@ -24,8 +24,8 @@ make re && ./tetris -c
  
 # Usage
 ```bash
-git clone https://github.com/alex216/ft_refactor_tetris ~
-cd ~
+git clone https://github.com/alex216/ft_refactor_tetris ft_refactor_tetris
+cd ft_refactor_tetris
 make
 ./tetris
 ```
